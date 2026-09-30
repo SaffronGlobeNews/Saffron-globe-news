@@ -290,10 +290,19 @@ window.addEventListener("newsFeedUpdated",()=>{
  function renderLive(){
   const stories=(window.SAFFRON_NEWS?.stories||[]);
   if(!stories.length)return;
-  const items=stories.slice(0,6);
+  const items=stories.slice(0,8);
   const make=(s)=>'<a href="article.html?auto='+encodeURIComponent(s.id||"")+'">'+escapeHTML(s.title||"Latest story")+'</a>';
-  if(rail)rail.innerHTML=items.slice(0,4).map(make).join('<span>•</span>');
-  if(ticker)ticker.innerHTML=items.map(make).join('<span> · </span>');
+  const build=(list,sep)=>list.map(make).join('<span aria-hidden="true">'+sep+'</span>');
+  if(rail){
+    const row=items.slice(0,5);
+    rail.innerHTML=build(row,"•")+build(row,"•");
+    rail.setAttribute("aria-live","off");
+  }
+  if(ticker){
+    const row=items.slice(0,8);
+    ticker.innerHTML=build(row,"·")+build(row,"·");
+    ticker.setAttribute("aria-live","off");
+  }
  }
  window.addEventListener("newsFeedUpdated",renderLive);
  renderLive();
