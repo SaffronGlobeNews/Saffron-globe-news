@@ -1,4 +1,5 @@
 import fs from "node:fs/promises";
+import crypto from "node:crypto";
 
 const apiKey = process.env.GNEWS_API_KEY;
 if (!apiKey) throw new Error("Missing GNEWS_API_KEY GitHub secret.");
@@ -92,7 +93,11 @@ const stories = all
     return true;
   })
   .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
-  .slice(0, 30);
+  .slice(0, 30)
+  .map(item => ({
+    id: crypto.createHash("sha256").update(item.url).digest("hex").slice(0, 16),
+    ...item
+  }));
 
 // Never erase a working feed if the provider temporarily rate-limits every request.
 if (!stories.length) {
