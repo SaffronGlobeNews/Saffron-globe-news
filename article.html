@@ -32,7 +32,7 @@
 <body>
 <div class="top">Saffron Globe News <span>World · Geopolitics · Diplomacy · Security · Global Affairs</span></div>
 <header><a href="index.html" class="brand site-brand"><img src="saffron-globe-logo.svg" alt="Saffron Globe News"><span class="brand-tagline">The world in focus. Global affairs in context.</span></a><button id="menuBtn">☰</button>
-<nav id="nav"><a href="index.html#latest">Home</a><a href="index.html#international">World</a><a href="index.html#security">Security</a><a href="index.html#diplomacy">Diplomacy</a><a href="index.html#analysis">Analysis</a><button id="searchBtn">Search</button></nav></header>
+<nav id="nav"><a href="index.html#latest">Home</a><a href="index.html#international">World</a><a href="index.html#security">Security</a><a href="index.html#diplomacy">Diplomacy</a><a href="index.html#analysis">Analysis</a><button id="searchBtn">Search</button><button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">◐</button></nav></header>
 <div class="breaking"><b>GLOBAL DESK</b> International reporting · English only · Sources provided for every report.</div>
 <main class="article-page">
 <div class="article-layout">
@@ -111,3 +111,29 @@
  }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>The automated edition could not be loaded right now.</p>";}
 })();
 </script>
+
+<script>
+(function(){
+ function addTools(){
+   const root=document.getElementById("story"); if(!root||root.querySelector(".article-tools"))return;
+   const tools=document.createElement("div"); tools.className="article-tools";
+   tools.innerHTML='<button type="button" id="shareStory">Share story</button><button type="button" id="copyStory">Copy link</button><button type="button" id="printStory">Print</button>';
+   const meta=root.querySelector(".article-meta"); if(meta)meta.insertAdjacentElement("afterend",tools); else root.prepend(tools);
+   document.getElementById("shareStory")?.addEventListener("click",async()=>{
+     if(navigator.share){try{await navigator.share({title:document.title,url:location.href})}catch{}}
+     else {await navigator.clipboard?.writeText(location.href); const b=document.getElementById("shareStory");b.textContent="Link copied ✓";setTimeout(()=>b.textContent="Share story",1800)}
+   });
+   document.getElementById("copyStory")?.addEventListener("click",async()=>{try{await navigator.clipboard.writeText(location.href);const b=document.getElementById("copyStory");b.textContent="Copied ✓";setTimeout(()=>b.textContent="Copy link",1800)}catch{}});
+   document.getElementById("printStory")?.addEventListener("click",()=>window.print());
+ }
+ const obs=new MutationObserver(addTools); obs.observe(document.getElementById("story"),{childList:true,subtree:true}); addTools();
+ const t=document.getElementById("themeToggle");
+ if(t){const d=localStorage.getItem("sgn-theme")==="dark";document.body.classList.toggle("dark-mode",d);t.textContent=d?"☀":"◐";t.addEventListener("click",()=>{document.body.classList.toggle("dark-mode");localStorage.setItem("sgn-theme",document.body.classList.contains("dark-mode")?"dark":"light");t.textContent=document.body.classList.contains("dark-mode")?"☀":"◐"})}
+})();
+</script>
+<style>
+@media print{
+ header,.top,.breaking,.back-link,.article-tools,footer{display:none!important}
+ .article-page{padding:0!important}.article-hero{height:90mm!important}
+}
+</style>
