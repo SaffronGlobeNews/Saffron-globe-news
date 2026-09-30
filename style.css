@@ -1158,3 +1158,28 @@ body.dark-mode .live-rail{border-color:#26394c}
  .footer-cols{grid-template-columns:1fr}
 }
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+
+/* Image overflow fix: keep every photograph inside its card and out of text flow. */
+main article{min-width:0;overflow:hidden;}
+main article img{display:block;max-width:100%;}
+main article .image-ui,
+main article .choice-image,
+main article .auto-news-image{position:relative;width:100%;max-width:100%;overflow:hidden;box-sizing:border-box;}
+main article .image-ui{height:auto;aspect-ratio:16/9;}
+main article .choice-image,
+main article .auto-news-image{height:auto;aspect-ratio:16/9;}
+main article .image-ui>img,
+main article .choice-image>img,
+main article .auto-news-image>img{display:block;width:100%;height:100%;max-width:100%;margin:0!important;object-fit:cover;object-position:center;}
+main article h2,main article h3,main article p,main article label,main article .source{position:relative;z-index:2;}
+main article h2,main article h3{overflow-wrap:anywhere;}
+.image-missing{display:flex;align-items:center;justify-content:center;background:#e8eef5;color:#65758a;font-size:10px;font-weight:800;letter-spacing:1.5px;}
+/* Horizontal/compact cards: image occupies its own grid area. */
+.choice-grid article,.market-cards article{min-width:0;}
+.choice-grid article .choice-image,.market-cards article .choice-image{grid-column:1/-1;}
+/* Newspaper compositor images never escape their column. */
+.paper-sheet img,.paper-photo img{display:block;max-width:100%;width:100%;height:100%;object-fit:cover;}
+.paper-photo{overflow:hidden;min-width:0;}
+/* Prevent intrinsic image dimensions from creating horizontal overflow. */
+img{max-width:100%;}
