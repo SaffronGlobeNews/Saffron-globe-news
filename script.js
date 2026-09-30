@@ -70,3 +70,29 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
    }
  });
 }
+
+/* Premium newsroom controls */
+(function(){
+  const progress=document.createElement("div");
+  progress.id="readingProgress";
+  document.body.appendChild(progress);
+
+  const topBtn=document.createElement("button");
+  topBtn.id="backToTop";
+  topBtn.type="button";
+  topBtn.setAttribute("aria-label","Back to top");
+  topBtn.innerHTML="↑";
+  document.body.appendChild(topBtn);
+
+  function updateProgress(){
+    const doc=document.documentElement;
+    const max=doc.scrollHeight-window.innerHeight;
+    const pct=max>0 ? (window.scrollY/max)*100 : 0;
+    progress.style.width=Math.min(100,Math.max(0,pct))+"%";
+    topBtn.classList.toggle("visible",window.scrollY>520);
+  }
+  window.addEventListener("scroll",updateProgress,{passive:true});
+  window.addEventListener("resize",updateProgress);
+  topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+  updateProgress();
+})();
