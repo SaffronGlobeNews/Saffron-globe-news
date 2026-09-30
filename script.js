@@ -355,3 +355,65 @@ document.addEventListener("error",function(e){
    });
  });
 })();
+
+
+/* SGN editorial curation: keep the homepage visually complete and give the lead story real feed data. */
+(function(){
+  const fallbackFor=(text)=>{
+    text=(text||"").toLowerCase();
+    if(/sport|football|cricket|tennis|athlete|match/.test(text))return "news-sports.svg";
+    if(/market|business|stock|econom|trade|oil|finance/.test(text))return "news-business.svg";
+    if(/film|celebr|entertain|music|culture|actor/.test(text))return "news-entertainment.svg";
+    return "news-world.svg";
+  };
+  function ensureVisuals(){
+    document.querySelectorAll("main article").forEach(article=>{
+      if(article.closest("#todayspaper")||article.closest("#puzzles"))return;
+      if(article.querySelector("img,.image-ui,.choice-image,.auto-news-image"))return;
+      const label=article.querySelector("label")?.textContent||"GLOBAL NEWS";
+      const title=article.querySelector("h3,h2")?.textContent||"";
+      const wrap=document.createElement("div");
+      wrap.className="choice-image editorial-fallback-image";
+      const img=document.createElement("img");
+      img.src=fallbackFor(label+" "+title);
+      img.alt=title||label;
+      img.loading="lazy";
+      img.decoding="async";
+      wrap.appendChild(img);
+      const heading=article.querySelector("h3,h2");
+      if(heading)article.insertBefore(wrap,heading);
+      else article.prepend(wrap);
+    });
+  }
+  function updateLead(){
+    const stories=window.SAFFRON_NEWS?.stories||[];
+    const top=stories[0];
+    const feature=document.querySelector(".editorial-hero .feature");
+    if(!top||!feature)return;
+    const fallback=fallbackFor(top.category+" "+top.title);
+    const image=feature.querySelector("img");
+    if(image){
+      image.src=top.image||fallback;
+      image.alt=top.title||"SGN lead story";
+      image.onerror=()=>{image.onerror=null;image.src=fallback};
+    }
+    const label=feature.querySelector("label");
+    const h=feature.querySelector("h2");
+    const p=feature.querySelector("p");
+    const a=feature.querySelector(".source");
+    if(label)label.textContent=(top.category||"WORLD").toUpperCase()+" · LIVE EDITION";
+    if(h)h.textContent=top.title||h.textContent;
+    if(p)p.textContent=top.description||top.content||p.textContent;
+    if(a){
+      const id=top.id||"";
+      a.href="article.html?auto="+encodeURIComponent(id);
+      a.textContent="Read full SGN report →";
+      a.removeAttribute("target");
+    }
+  }
+  window.addEventListener("newsFeedUpdated",()=>{updateLead();setTimeout(ensureVisuals,80)});
+  document.addEventListener("DOMContentLoaded",ensureVisuals);
+  setTimeout(ensureVisuals,1200);
+  updateLead();
+})();
+
