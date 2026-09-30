@@ -275,3 +275,6 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
  if(briefBox){briefBox.innerHTML=sourceArticles.slice(4,10).map(a=>{const h=a.querySelector("h3,h2")?.textContent.trim()||"";const p=a.querySelector("p")?.textContent.trim()||"";const l=a.querySelector("label")?.textContent.trim()||"WORLD";return '<article class="paper-brief"><small>'+escapeHTML(l)+'</small><strong>'+escapeHTML(h)+'</strong><p>'+escapeHTML(p.slice(0,115))+(p.length>115?"…":"")+'</p></article>'}).join("")}
  document.getElementById("printPaper")?.addEventListener("click",()=>window.print());
 })();
+
+/* Live feed hook */
+(async()=>{try{const r=await fetch("data/news.json",{cache:"no-store"});if(!r.ok)return;const f=await r.json();window.SAFFRON_NEWS=f;window.dispatchEvent(new Event("newsFeedUpdated"));}catch(e){console.warn("News feed unavailable",e);}})();
