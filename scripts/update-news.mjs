@@ -130,6 +130,27 @@ await fs.writeFile(
   "utf8"
 );
 
+
+const siteBase = "https://parshantsharma29102005-hue.github.io/Saffron-globe-news/";
+const xmlEscape = value => String(value).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&apos;");
+const sitemapUrls = [
+  { loc: siteBase, lastmod: new Date().toISOString() },
+  { loc: siteBase + "article.html", lastmod: new Date().toISOString() },
+  ...stories.map(story => ({
+    loc: siteBase + "article.html?auto=" + encodeURIComponent(story.id),
+    lastmod: story.publishedAt || new Date().toISOString()
+  }))
+];
+const sitemap = [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
+  ...sitemapUrls.map(item => `  <url><loc>${xmlEscape(item.loc)}</loc><lastmod>${xmlEscape(new Date(item.lastmod).toISOString())}</lastmod></url>`),
+  '</urlset>',
+  ''
+].join("\n");
+await fs.writeFile("sitemap.xml", sitemap, "utf8");
+console.log(`Sitemap coverage: ${sitemapUrls.length} URLs`);
+
 const imageCount = stories.filter(s => s.image).length;
 console.log(`Saved ${stories.length} stories to data/news.json`);
 console.log(`Image coverage: ${imageCount}/${stories.length} stories have an image source (fallbacks included).`);
