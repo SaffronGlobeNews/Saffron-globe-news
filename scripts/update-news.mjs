@@ -130,4 +130,7 @@ await fs.writeFile(
   "utf8"
 );
 
+const imageCount = stories.filter(s => s.image).length;
 console.log(`Saved ${stories.length} stories to data/news.json`);
+console.log(`Image coverage: ${imageCount}/${stories.length} stories have an image source (fallbacks included).`);
+if (imageCount !== stories.length) throw new Error("Image coverage check failed: every published story must have an image.");
