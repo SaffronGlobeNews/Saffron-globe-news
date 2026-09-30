@@ -252,3 +252,26 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
    r.textContent=vals.length===6&&new Set(vals).size===6?'Row looks good.':'Fill the row with six different numbers.';
  });
 })();
+
+/* Today's Newspaper compositor */
+(function(){
+ const paper=document.getElementById("dailyPaper"); if(!paper)return;
+ const sourceArticles=[...document.querySelectorAll("main article")].filter(a=>!a.closest("#todayspaper")&&!a.classList.contains("puzzle-card")&&!a.classList.contains("video-card")&&!a.classList.contains("video-feature"));
+ const lead=paper.querySelector(".paper-lead");
+ const cards=sourceArticles.slice(0,4);
+ function copyCard(target,source){
+   if(!target||!source)return;
+   const img=source.querySelector("img"); const h=source.querySelector("h3,h2"); const p=source.querySelector("p"); const label=source.querySelector("label");
+   if(img){const pi=target.querySelector("img");if(pi){pi.src=img.currentSrc||img.src;pi.alt=img.alt||"News photograph"}}
+   if(h){const t=target.querySelector("h3,h4");if(t)t.textContent=h.textContent.replace(/\s+/g," ").trim()}
+   if(p){const pt=target.querySelector("p");if(pt)pt.textContent=p.textContent.replace(/\s+/g," ").trim()}
+   if(label){const l=target.querySelector(".paper-section");if(l)l.textContent=label.textContent}
+ }
+ copyCard(lead,cards[0]);
+ const sourceLink=cards[0]?.querySelector(".source");
+ if(sourceLink){const s=lead.querySelector(".paper-source");s.textContent="Reporting / source: "+(sourceLink.textContent||"Original publisher").replace("→","").trim()}
+ const cols=[...paper.querySelectorAll(".paper-columns article")]; cols.forEach((el,i)=>copyCard(el,cards[i+1]));
+ const briefBox=document.getElementById("paperBriefs");
+ if(briefBox){briefBox.innerHTML=sourceArticles.slice(4,10).map(a=>{const h=a.querySelector("h3,h2")?.textContent.trim()||"";const p=a.querySelector("p")?.textContent.trim()||"";const l=a.querySelector("label")?.textContent.trim()||"WORLD";return '<article class="paper-brief"><small>'+escapeHTML(l)+'</small><strong>'+escapeHTML(h)+'</strong><p>'+escapeHTML(p.slice(0,115))+(p.length>115?"…":"")+'</p></article>'}).join("")}
+ document.getElementById("printPaper")?.addEventListener("click",()=>window.print());
+})();
