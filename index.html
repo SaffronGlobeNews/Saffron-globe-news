@@ -68,6 +68,50 @@
   </div>
 </section>
 
+<section id="puzzles" class="puzzle-desk">
+  <div class="puzzle-head"><div><span class="eyebrow">THE PUZZLE PAGE</span><h2>Today's Newspaper Puzzles</h2></div><p>A small daily brain break, designed in the style of a traditional newspaper puzzle page.</p></div>
+  <div class="puzzle-grid">
+    <article class="puzzle-card crossword-card">
+      <div class="puzzle-card-head"><div><label>MINI CROSSWORD</label><h3>Global Brief Crossword</h3></div><span class="puzzle-number">01</span></div>
+      <div class="crossword" aria-label="Mini crossword grid">
+        <div class="cw-cell black"></div><div class="cw-cell"><span>1</span><input maxlength="1" data-answer="U" aria-label="Crossword 1"></div><div class="cw-cell"><span>2</span><input maxlength="1" data-answer="N" aria-label="Crossword 2"></div><div class="cw-cell"><span>3</span><input maxlength="1" data-answer="I" aria-label="Crossword 3"></div><div class="cw-cell"><span>4</span><input maxlength="1" data-answer="T" aria-label="Crossword 4"></div>
+        <div class="cw-cell"><span>5</span><input maxlength="1" data-answer="A" aria-label="Crossword 5"></div><div class="cw-cell"><input maxlength="1" data-answer="S" aria-label="Crossword 6"></div><div class="cw-cell"><input maxlength="1" data-answer="I" aria-label="Crossword 7"></div><div class="cw-cell"><input maxlength="1" data-answer="A" aria-label="Crossword 8"></div><div class="cw-cell black"></div>
+        <div class="cw-cell"><span>6</span><input maxlength="1" data-answer="T" aria-label="Crossword 9"></div><div class="cw-cell"><input maxlength="1" data-answer="R" aria-label="Crossword 10"></div><div class="cw-cell"><input maxlength="1" data-answer="A" aria-label="Crossword 11"></div><div class="cw-cell"><input maxlength="1" data-answer="D" aria-label="Crossword 12"></div><div class="cw-cell"><input maxlength="1" data-answer="E" aria-label="Crossword 13"></div>
+        <div class="cw-cell"><span>7</span><input maxlength="1" data-answer="G" aria-label="Crossword 14"></div><div class="cw-cell"><input maxlength="1" data-answer="L" aria-label="Crossword 15"></div><div class="cw-cell"><input maxlength="1" data-answer="O" aria-label="Crossword 16"></div><div class="cw-cell"><input maxlength="1" data-answer="B" aria-label="Crossword 17"></div><div class="cw-cell"><input maxlength="1" data-answer="E" aria-label="Crossword 18"></div>
+      </div>
+      <div class="clues"><div><b>Across</b><p>1. A single political or economic grouping (4)</p><p>5. Large region of the world (4)</p><p>6. Exchange of goods across borders (5)</p><p>7. The world, in brief (5)</p></div><div><b>Down</b><p>1. A political grouping or alliance (4)</p><p>2. A region or continent (4)</p><p>3. Buying and selling between countries (5)</p></div></div>
+      <div class="puzzle-actions"><button type="button" class="puzzle-check" data-puzzle="crossword">Check answers</button><button type="button" class="puzzle-reset" data-puzzle="crossword">Clear</button><span class="puzzle-result" id="crosswordResult"></span></div>
+    </article>
+    <article class="puzzle-card word-card">
+      <div class="puzzle-card-head"><div><label>WORD SEARCH</label><h3>World Desk Search</h3></div><span class="puzzle-number">02</span></div>
+      <p class="puzzle-intro">Find these five words hidden across the grid: <strong>WORLD · PEACE · TRADE · ASIA · NEWS</strong></p>
+      <div class="word-grid" aria-label="Word search puzzle">
+        <button>W</button><button>O</button><button>R</button><button>L</button><button>D</button><button>A</button>
+        <button>X</button><button>P</button><button>E</button><button>A</button><button>C</button><button>E</button>
+        <button>T</button><button>R</button><button>A</button><button>D</button><button>E</button><button>N</button>
+        <button>A</button><button>S</button><button>I</button><button>A</button><button>M</button><button>W</button>
+        <button>N</button><button>E</button><button>W</button><button>S</button><button>R</button><button>O</button>
+        <button>B</button><button>L</button><button>U</button><button>E</button><button>G</button><button>O</button>
+      </div>
+      <p class="word-note">Tip: words run horizontally in today's easy edition.</p>
+      <div class="puzzle-actions"><button type="button" class="word-reveal">Reveal words</button><span class="puzzle-result" id="wordResult"></span></div>
+    </article>
+    <article class="puzzle-card sudoku-card">
+      <div class="puzzle-card-head"><div><label>QUICK SUDOKU</label><h3>5-Minute Grid</h3></div><span class="puzzle-number">03</span></div>
+      <div class="sudoku-grid" aria-label="Mini sudoku puzzle">
+        <input value="1" readonly><input value="" maxlength="1" data-sudoku="2"><input value="3" readonly><input value="4" readonly><input value="" maxlength="1" data-sudoku="5"><input value="6" readonly>
+        <input value="" maxlength="1" data-sudoku="7"><input value="2" readonly><input value="" maxlength="1" data-sudoku="9"><input value="3" readonly><input value="" maxlength="1" data-sudoku="11"><input value="5" readonly>
+        <input value="2" readonly><input value="3" readonly><input value="" maxlength="1" data-sudoku="15"><input value="" maxlength="1" data-sudoku="16"><input value="5" readonly><input value="" maxlength="1" data-sudoku="18">
+        <input value="3" readonly><input value="" maxlength="1" data-sudoku="20"><input value="5" readonly><input value="6" readonly><input value="" maxlength="1" data-sudoku="23"><input value="1" readonly>
+        <input value="" maxlength="1" data-sudoku="25"><input value="5" readonly><input value="" maxlength="1" data-sudoku="27"><input value="1" readonly><input value="2" readonly><input value="" maxlength="1" data-sudoku="30">
+        <input value="6" readonly><input value="" maxlength="1" data-sudoku="32"><input value="1" readonly><input value="" maxlength="1" data-sudoku="34"><input value="3" readonly><input value="4" readonly>
+      </div>
+      <p class="sudoku-note">Fill each row with 1–6 without repeating a number.</p>
+      <div class="puzzle-actions"><button type="button" class="sudoku-check">Check row</button><span class="puzzle-result" id="sudokuResult"></span></div>
+    </article>
+  </div>
+</section>
+
 <section class="most-read"><div class="head"><h2>Most Read</h2><span class="updated">Global Desk</span></div><div class="most-read-grid"><article><b>01</b><a href="article.html?story=0">Russia warns NATO of possible nuclear response over Kaliningrad</a><span>World · Security</span></article><article><b>02</b><a href="article.html?story=1">Iran receives US response as Qatar-mediated diplomacy continues</a><span>Middle East · Diplomacy</span></article><article><b>03</b><a href="article.html?story=2">Oil rises as stalled diplomacy keeps markets under pressure</a><span>Global Economy</span></article></div></section>
 <section class="newsletter"><div><label>THE GLOBE BRIEF</label><h2>Important stories.<br>Delivered simply.</h2></div><form id="subscribe"><input type="email" placeholder="Your email address" required><button>Subscribe</button></form></section>
 <section class="news-feed"><div class="section-head"><div><span class="eyebrow">LIVE WORLD DESK</span><h2>World News — Latest</h2></div><p>Long-form, source-led international coverage. Stories are grouped by region and subject so readers can keep moving through the day's major developments.</p></div>
