@@ -34,12 +34,12 @@ function renderSearch(query){
     const title=a.querySelector("h3,h2")?.textContent.trim()||"";
     const label=a.querySelector("label")?.textContent.trim()||"WORLD NEWS";
     const body=a.querySelector("p")?.textContent.trim()||"";
-    const story=a.dataset.story;
-    return {story,title,label,body};
-  }).filter(x=>x.title&&x.story!==undefined);
+    const href=a.querySelector("h3 a,h2 a")?.getAttribute("href") || ("article.html?story="+encodeURIComponent(a.dataset.story||""));
+    return {href,title,label,body};
+  }).filter(x=>x.title&&x.href);
   const matches=q?items.filter(x=>(x.title+" "+x.label+" "+x.body).toLowerCase().includes(q)):items.slice(0,8);
   searchResults.innerHTML=matches.length
-    ? matches.map(x=>'<a class="search-result" href="article.html?story='+encodeURIComponent(x.story)+'"><small>'+escapeHTML(x.label)+'</small><strong>'+escapeHTML(x.title)+'</strong><span class="search-snippet">'+escapeHTML(x.body.slice(0,150))+(x.body.length>150?"…":"")+'</span></a>').join("")
+    ? matches.map(x=>'<a class="search-result" href="'+escapeHTML(x.href)+'"><small>'+escapeHTML(x.label)+'</small><strong>'+escapeHTML(x.title)+'</strong><span class="search-snippet">'+escapeHTML(x.body.slice(0,150))+(x.body.length>150?"…":"")+'</span></a>').join("")
     : '<div class="search-empty">No stories matched your search. Try a broader topic, region or keyword.</div>';
 }
 siteSearch?.addEventListener("input",e=>renderSearch(e.target.value));
@@ -74,57 +74,37 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
    sports:["Global Sport","Cricket","Football · Tennis · More"],
    markets:["Stocks","Markets","Personal Finance"]
  };
- Object.entries(sectionStoryMap).forEach(([section,labels])=>{
+ Object.entries(sectionStoryMap).forEach(([section])=>{
    const root=document.getElementById(section);
    if(!root)return;
-   root.querySelectorAll("article").forEach((article,i)=>article.dataset.choiceSection=section);
+   root.querySelectorAll("article").forEach(article=>article.dataset.choiceSection=section);
  });
 
- const realPhotoPool=[
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9922619.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9922617.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9922620.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9913079.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9913090.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9913096.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9968174.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9968176.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9968175.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9926689.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9926683.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9926673.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9923573.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9959626.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9943540.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9943508.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9943542.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9943494.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9915832.jpg",
-  "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9925475.jpg"
- ];let photoIndex=0;
- const photoUrl=url=>url;
+ /*
+  * Story identity rule:
+  * - Static editorial cards keep their numbered story= links.
+  * - Automated cards always use their stable news-feed ID.
+  * - Never assign a random photograph to a story. An image must belong to
+  *   the story data that rendered the card.
+  */
  const articles=[...document.querySelectorAll("main article")];
  articles.forEach((article,i)=>{
-   article.dataset.story=i;
-   let img=article.querySelector("img");
-   if(!img){
-     img=document.createElement("img");
-     article.insertBefore(img,article.firstChild);
-     const name=realPhotoPool[photoIndex%realPhotoPool.length];
-     photoIndex++;
-     img.src=photoUrl(name);
-     img.alt="News photograph";
-     img.dataset.photoSource="Public-domain U.S. government photography via DVIDS/Wikimedia Commons";
+   if(!article.dataset.story) article.dataset.story=String(i);
+
+   const img=article.querySelector("img");
+   if(img){
+     img.classList.add("thumbimg","story-thumb");
+     img.loading="lazy";
+     img.decoding="async";
+     img.removeAttribute("srcset");
+     img.removeAttribute("sizes");
    }
-   img.classList.add("thumbimg","story-thumb"); img.loading="lazy"; img.decoding="async";
-   img.removeAttribute("srcset");
-   img.removeAttribute("sizes");
-   img.addEventListener("error",()=>{ if(!img.dataset.fallbackTried){ img.dataset.fallbackTried="1"; const name=realPhotoPool[(i+photoIndex)%realPhotoPool.length]; photoIndex++; img.src=photoUrl(name); img.dataset.photoSource="Public-domain fallback photography"; } });
+
    const headline=article.querySelector("h3");
-   if(headline&&!headline.querySelector("a")){
+   if(headline && !headline.querySelector("a")){
      const link=document.createElement("a");
-     link.href="article.html?story="+i;
-     link.textContent=headline.textContent;
+     link.href="article.html?story="+encodeURIComponent(article.dataset.story);
+     link.textContent=headline.textContent.trim();
      headline.textContent="";
      headline.appendChild(link);
    }
