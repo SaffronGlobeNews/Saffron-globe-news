@@ -7,6 +7,15 @@ if (!apiKey) throw new Error("Missing GNEWS_API_KEY GitHub secret.");
 const categories = ["world", "business", "entertainment", "sports"];
 const base = "https://gnews.io/api/v4/top-headlines";
 const all = [];
+function fallbackImage(category) {
+  return ({
+    world: "news-world.svg",
+    business: "news-business.svg",
+    entertainment: "news-entertainment.svg",
+    sports: "news-sports.svg"
+  }[category] || "news-world.svg");
+}
+
 
 async function fetchCategory(url, category) {
   const maxAttempts = 3;
@@ -50,7 +59,7 @@ for (const category of categories) {
       title: item.title ?? "",
       description: item.description ?? "",
       content: item.content ?? "",
-      image: item.image ?? "",
+      image: item.image || fallbackImage(category),
       url: item.url ?? "",
       publishedAt: item.publishedAt ?? null,
       source: item.source?.name ?? "Unknown source"
