@@ -310,3 +310,13 @@ window.addEventListener("newsFeedUpdated",()=>{
  const form=document.getElementById("newsletterProForm");
  form?.addEventListener("submit",e=>{e.preventDefault();const btn=form.querySelector("button");btn.textContent="Subscribed ✓";btn.disabled=true;form.reset()});
 })();
+
+/* Premium UI interactions */
+(function(){
+ const top=document.getElementById("backTop");
+ if(!top)return;
+ const sync=()=>top.classList.toggle("show",window.scrollY>650);
+ window.addEventListener("scroll",sync,{passive:true});
+ top.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
+ sync();
+})();
