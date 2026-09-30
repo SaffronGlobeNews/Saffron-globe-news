@@ -96,3 +96,73 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
   topBtn.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
   updateProgress();
 })();
+
+
+/* Premium image presentation */
+(function(){
+  const images=[...document.querySelectorAll("main img")].filter(img=>{
+    return !img.closest(".site-brand") && !img.closest(".image-ui");
+  });
+
+  function makeImageUI(img){
+    const wrapper=document.createElement("div");
+    wrapper.className="image-ui";
+    const parent=img.parentNode;
+    parent.insertBefore(wrapper,img);
+    wrapper.appendChild(img);
+
+    const article=img.closest("article");
+    const label=article ? article.querySelector("label") : null;
+    const badge=document.createElement("span");
+    badge.className="image-badge";
+    badge.textContent=(label?.textContent||"WORLD").split("·")[0].trim().slice(0,24);
+    wrapper.appendChild(badge);
+
+    const meta=document.createElement("div");
+    meta.className="image-meta";
+    const caption=document.createElement("span");
+    caption.className="image-caption";
+    caption.textContent=img.alt||"Saffron Globe News";
+    const credit=document.createElement("span");
+    credit.className="image-credit";
+    credit.textContent="Saffron Globe";
+    meta.append(caption,credit);
+    wrapper.appendChild(meta);
+
+    const zoom=document.createElement("button");
+    zoom.className="image-zoom";
+    zoom.type="button";
+    zoom.setAttribute("aria-label","View image larger");
+    zoom.innerHTML="⤢";
+    zoom.addEventListener("click",()=>openLightbox(img));
+    wrapper.appendChild(zoom);
+  }
+
+  const lightbox=document.createElement("div");
+  lightbox.className="image-lightbox";
+  lightbox.setAttribute("aria-hidden","true");
+  lightbox.innerHTML='<button class="lightbox-close" type="button" aria-label="Close image">×</button><img alt=""><div class="lightbox-caption"></div>';
+  document.body.appendChild(lightbox);
+  const lbImg=lightbox.querySelector("img");
+  const lbCaption=lightbox.querySelector(".lightbox-caption");
+
+  function openLightbox(img){
+    lbImg.src=img.currentSrc||img.src;
+    lbImg.alt=img.alt||"";
+    lbCaption.textContent=img.alt||"";
+    lightbox.classList.add("open");
+    lightbox.setAttribute("aria-hidden","false");
+    document.body.style.overflow="hidden";
+  }
+  function closeLightbox(){
+    lightbox.classList.remove("open");
+    lightbox.setAttribute("aria-hidden","true");
+    document.body.style.overflow="";
+    lbImg.removeAttribute("src");
+  }
+  lightbox.querySelector(".lightbox-close").addEventListener("click",closeLightbox);
+  lightbox.addEventListener("click",e=>{if(e.target===lightbox) closeLightbox()});
+  document.addEventListener("keydown",e=>{if(e.key==="Escape") closeLightbox()});
+
+  images.forEach(makeImageUI);
+})();
