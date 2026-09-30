@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://parshantsharma29102005-hue.github.io/Saffron-globe-news/sitemap.xml
