@@ -1009,3 +1009,17 @@ a{-webkit-tap-highlight-color:transparent}
 .puzzle-actions .puzzle-reset{background:#fff;color:#1557a6}.puzzle-result{font-size:10px;font-weight:700;color:#1557a6}
 @media(max-width:950px){.puzzle-grid{grid-template-columns:1fr 1fr}.sudoku-card{grid-column:span 2}.puzzle-head{align-items:start;flex-direction:column}}
 @media(max-width:650px){.puzzle-desk{padding:32px 16px;margin-left:0;margin-right:0}.puzzle-grid{grid-template-columns:1fr}.sudoku-card{grid-column:auto}.puzzle-head h2{font-size:29px}.clues{grid-template-columns:1fr}.crossword{max-width:280px}}
+
+/* Search result excerpts */
+.search-result .search-snippet{
+  display:block;
+  margin-top:6px;
+  color:#68788a;
+  font:400 12px/1.5 "DM Sans",sans-serif;
+}
+.search-result:hover .search-snippet{color:#52667a}
+@media(max-width:700px){
+  .search-box h2{font-size:29px}
+  .search-result strong{font-size:17px}
+  .search-result .search-snippet{font-size:11px}
+}
