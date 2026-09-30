@@ -60,9 +60,31 @@ for (const category of categories) {
   await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
+// Editorial quality guard: keep the automatic homepage focused on useful news
+// and remove obvious graphic/clickbait phrasing without trying to judge legitimate reporting.
+const blockedPhrases = [
+  /\\bgraphic(?: images?| footage)?\\b/i,
+  /\\bgruesome (?:images?|footage|details)\\b/i,
+  /\\bdead body\\b/i,
+  /\\bgore\\b/i,
+  /\\bnsfw\\b/i,
+  /\\bexplicit (?:images?|video|footage)\\b/i,
+  /\\bshocking (?:video|footage|images?)\\b/i,
+  /\\bdisturbing (?:video|footage|images?)\\b/i,
+  /\\byou won't believe\\b/i,
+  /\\bclick here\\b/i,
+  /\\bwatch (?:the )?shocking\\b/i
+];
+
+function passesEditorialFilter(item) {
+  const text = [item.title, item.description].filter(Boolean).join(" ");
+  return !blockedPhrases.some(pattern => pattern.test(text));
+}
+
 const seen = new Set();
 const stories = all
   .filter(item => item.title && item.url)
+  .filter(passesEditorialFilter)
   .filter(item => {
     const key = item.url;
     if (seen.has(key)) return false;
