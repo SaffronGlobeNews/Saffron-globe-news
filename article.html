@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Story | Saffron Globe News</title>
+<meta name="description" content="International news and geopolitical reporting from Saffron Globe News.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<style>
+.article-page{max-width:1240px;margin:auto;padding:54px 28px 80px}
+.article-layout{max-width:900px;margin:0 auto}
+.article-kicker{font-size:11px;letter-spacing:1.8px;font-weight:800;color:#e56b1f}
+.article-page h1{font:700 58px/1.08 "Playfair Display",serif;letter-spacing:-1.5px;margin:12px 0 18px}
+.article-deck{font-size:18px;line-height:1.7;color:#625e57;max-width:780px}
+.article-meta{font-size:12px;color:#777;border-top:1px solid #d9d1c5;padding-top:14px;margin-top:24px}
+.article-hero{width:100%;height:480px;object-fit:cover;display:block;margin:34px 0 10px}
+.photo-credit{font-size:10px;color:#8a8379;margin-bottom:36px}
+.article-body{font:400 18px/1.85 "DM Sans",Arial,sans-serif;color:#282624}
+.article-body p{margin:0 0 24px}
+.article-source{display:inline-block;margin-top:10px;padding:13px 17px;background:#171717;color:#fff;text-decoration:none;font-size:13px;font-weight:700}
+.article-source:hover{background:#e56b1f}
+.back-link{display:inline-block;margin-bottom:30px;color:#e56b1f;text-decoration:none;font-size:13px;font-weight:700}
+.related{border-top:2px solid #171717;margin-top:60px;padding-top:25px}
+.related h2{font:700 30px "Playfair Display",serif}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+.related-card{border-top:1px solid #cfc6ba;padding-top:15px}
+.related-card a{color:#171717;text-decoration:none;font:700 19px/1.25 "Playfair Display",serif}
+@media(max-width:800px){.article-page{padding:35px 18px 60px}.article-page h1{font-size:42px}.article-hero{height:280px}.article-body{font-size:16px}.related-grid{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<div class="top">Saffron Globe News <span>World · Geopolitics · Diplomacy · Security · Global Affairs</span></div>
+<header><a href="index.html" class="brand" style="text-decoration:none;color:inherit"><b>SG</b><div><strong>SAFFRON GLOBE NEWS</strong><small>The world in focus. Global affairs in context.</small></div></a><button id="menuBtn">☰</button>
+<nav id="nav"><a href="index.html#latest">Home</a><a href="index.html#international">World</a><a href="index.html#security">Security</a><a href="index.html#diplomacy">Diplomacy</a><a href="index.html#analysis">Analysis</a><button id="searchBtn">Search</button></nav></header>
+<div class="breaking"><b>GLOBAL DESK</b> International reporting · English only · Sources provided for every report.</div>
+<main class="article-page">
+<div class="article-layout">
+<a class="back-link" href="index.html">← Back to Saffron Globe News</a>
+<div id="story">Loading story…</div>
+</div>
+</main>
+<footer><strong>SAFFRON GLOBE NEWS</strong><p>The world in focus. Geopolitics in context.</p><p class="note">International English-language publication. Reporting is attributed to the original outlet and source links are provided for readers.</p><div class="copyright">© 2026 Saffron Globe News · Global editorial project.</div></footer>
+<script src="script.js"></script>
+<script>
+(async function(){
+  const root=document.getElementById("story");
+  const id=Number(new URLSearchParams(location.search).get("story"));
+  if(!Number.isInteger(id)||id<0){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>This story link is invalid. Return to the homepage to choose another report.</p>";return;}
+  try{
+    const html=await fetch("index.html").then(r=>r.text());
+    const doc=new DOMParser().parseFromString(html,"text/html");
+    const articles=[...doc.querySelectorAll("main article")];
+    const a=articles[id];
+    if(!a){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>The requested report is no longer available.</p>";return;}
+    const label=a.querySelector("label")?.textContent?.trim()||"WORLD NEWS";
+    const title=a.querySelector("h3,h2")?.textContent?.trim()||"Saffron Globe News";
+    const source=a.querySelector(".source");
+    const sourceHref=source?.href||"#";
+    const sourceText=source?.textContent?.replace("→","").trim()||"Original source";
+    const paragraphs=[...a.querySelectorAll("p")].map(p=>p.textContent.trim()).filter(Boolean);
+    const image=a.querySelector("img")?.src;
+    const alt=a.querySelector("img")?.alt||"International news photograph";
+    const imageUrl=image||"https://commons.wikimedia.org/wiki/Special:Redirect/file/United_Nations_General_Assembly_hall.jpg";
+    document.title=title+" | Saffron Globe News";
+    root.innerHTML=
+      '<div class="article-kicker">'+label+'</div>'+
+      '<h1>'+title+'</h1>'+
+      '<div class="article-deck">'+(paragraphs[0]||"Source-led international reporting from Saffron Globe News.")+'</div>'+
+      '<div class="article-meta">Saffron Globe News · International Desk · Updated October 1, 2026</div>'+
+      '<img class="article-hero" src="'+imageUrl+'" alt="'+alt+'">'+
+      '<div class="photo-credit">Illustrative/editorial image. See the linked source for the original report and image rights.</div>'+
+      '<div class="article-body">'+paragraphs.map((p,i)=>i===0?"":'<p>'+p+'</p>').join("")+
+      '</div>'+
+      '<a class="article-source" href="'+sourceHref+'" target="_blank" rel="noopener">'+sourceText+' →</a>';
+    const related=articles.map((x,i)=>({i,title:x.querySelector("h3,h2")?.textContent?.trim()})).filter(x=>x.title&&x.i!==id).slice(Math.max(0,id-1),Math.max(0,id-1)+3);
+    root.insertAdjacentHTML("beforeend",'<section class="related"><h2>More from the World Desk</h2><div class="related-grid">'+related.map(x=>'<div class="related-card"><a href="article.html?story='+x.i+'">'+x.title+'</a></div>').join("")+'</div></section>');
+  }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>Please return to the homepage and try again.</p>";}
+})();
+</script>
+</body></html>
