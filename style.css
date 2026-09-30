@@ -272,3 +272,44 @@ nav button:hover,#searchBtn:hover{background:var(--ui-blue);border-color:var(--u
   #latest{padding-top:62px!important;padding-bottom:62px!important}
   #security,#diplomacy,#economy,#analysis{padding-top:58px!important;padding-bottom:58px!important}
 }
+
+
+/* Bold blue masthead */
+header{
+  background:#1557a6;
+  border-bottom:1px solid #0b3d78;
+  box-shadow:inset 0 0 0 100vmax #1557a6,0 3px 12px rgba(11,35,64,.18);
+  clip-path:inset(0 -100vmax);
+}
+header .site-brand img{background:transparent}
+header nav a{
+  color:#fff;
+  font-weight:800;
+}
+header nav a:hover{color:#fff}
+header nav a::after{background:#fff}
+header nav button,#searchBtn{
+  background:transparent!important;
+  border-color:rgba(255,255,255,.7)!important;
+  color:#fff!important;
+}
+header nav button:hover,#searchBtn:hover{
+  background:#fff!important;
+  border-color:#fff!important;
+  color:#1557a6!important;
+}
+header>button{
+  color:#fff;
+}
+@media(max-width:800px){
+  header{
+    padding-left:18px;
+    padding-right:18px;
+  }
+  nav{
+    background:#1557a6!important;
+    box-shadow:0 8px 18px rgba(11,35,64,.18);
+  }
+  nav a{color:#fff!important}
+  nav a:hover{color:#fff!important}
+}
