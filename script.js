@@ -1,7 +1,23 @@
 const menuBtn=document.getElementById("menuBtn"),nav=document.getElementById("nav"),searchBtn=document.getElementById("searchBtn");
 menuBtn?.addEventListener("click",()=>nav.classList.toggle("open"));
-searchBtn?.addEventListener("click",()=>{const q=prompt("Search Saffron Globe News");if(q)alert("Search is ready to connect to your news database. Query: "+q)});
-document.getElementById("subscribe")?.addEventListener("submit",e=>{e.preventDefault();const email=e.target.querySelector("input").value;alert("Thanks! "+email+" has been added to the demo newsletter.");e.target.reset()});
+const searchPanel=document.getElementById("searchPanel"),closeSearch=document.getElementById("closeSearch"),siteSearch=document.getElementById("siteSearch"),searchResults=document.getElementById("searchResults");
+function openSearch(){searchPanel?.classList.add("open");searchPanel?.setAttribute("aria-hidden","false");setTimeout(()=>siteSearch?.focus(),50);renderSearch("");}
+function closeSearchPanel(){searchPanel?.classList.remove("open");searchPanel?.setAttribute("aria-hidden","true");}
+searchBtn?.addEventListener("click",openSearch);closeSearch?.addEventListener("click",closeSearchPanel);
+searchPanel?.addEventListener("click",e=>{if(e.target===searchPanel)closeSearchPanel();});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSearchPanel();if(e.key==="/"&&!/input|textarea/i.test(document.activeElement?.tagName)){e.preventDefault();openSearch();}});
+function renderSearch(query){
+ if(!searchResults)return;
+ const q=query.trim().toLowerCase();
+ const items=[...document.querySelectorAll("main article")].map((a,i)=>({i,title:a.querySelector("h3,h2")?.textContent.trim()||"",label:a.querySelector("label")?.textContent.trim()||"WORLD NEWS"})).filter(x=>x.title);
+ const matches=q?items.filter(x=>(x.title+" "+x.label).toLowerCase().includes(q)):items.slice(0,8);
+ searchResults.innerHTML=matches.length?matches.map(x=>'<a class="search-result" href="article.html?story='+x.i+'"><small>'+x.label+'</small><strong>'+x.title+'</strong></a>').join(""):'<div class="search-empty">No stories matched your search.</div>';
+}
+siteSearch?.addEventListener("input",e=>renderSearch(e.target.value));
+
+document.getElementById("subscribe")?.addEventListener("submit",e=>{e.preventDefault();const email=e.target.querySelector("input").value;const button=e.target.querySelector("button");button.textContent="Subscribed ✓";button.disabled=true;e.target.querySelector("input").value="";});
+const dateLine=document.getElementById("dateLine");if(dateLine){dateLine.textContent=new Intl.DateTimeFormat("en-IN",{weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(new Date());}
+
 
 if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
  const realPhotoPool=[
@@ -40,7 +56,7 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
      img.alt="News photograph";
      img.dataset.photoSource="Public-domain U.S. government photography via DVIDS/Wikimedia Commons";
    }
-   img.classList.add("thumbimg","story-thumb");
+   img.classList.add("thumbimg","story-thumb"); img.loading="lazy"; img.decoding="async";
    img.removeAttribute("srcset");
    img.removeAttribute("sizes");
    img.addEventListener("error",()=>{ if(!img.dataset.fallbackTried){ img.dataset.fallbackTried="1"; const name=realPhotoPool[(i+photoIndex)%realPhotoPool.length]; photoIndex++; img.src=photoUrl(name); img.dataset.photoSource="Public-domain fallback photography"; } });
