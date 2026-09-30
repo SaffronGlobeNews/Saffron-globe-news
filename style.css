@@ -45,3 +45,40 @@ nav button{border-color:#aebdce;color:var(--news-navy)}
 .note{color:#718096}
 footer{background:#08192d}
 @media(max-width:800px){nav{background:var(--news-light)}}
+
+/* Modern newsroom UI system */
+:root{--ui-blue:#1557a6;--ui-blue-dark:#0b2340;--ui-blue-soft:#eaf2fb;--ui-white:#fff;--ui-border:#d7e0eb;--ui-shadow:0 8px 24px rgba(11,35,64,.08)}
+html{scroll-behavior:smooth}
+body{background:#f4f7fb}
+header{background:rgba(255,255,255,.97);position:sticky;top:0;z-index:20;box-shadow:0 1px 0 rgba(11,35,64,.08)}
+nav a{position:relative;padding:9px 0;transition:color .2s ease}
+nav a:hover{color:var(--ui-blue)}
+nav a::after{content:"";position:absolute;left:0;right:100%;bottom:2px;height:2px;background:var(--ui-blue);transition:right .2s ease}
+nav a:hover::after{right:0}
+nav button,#searchBtn{cursor:pointer;background:#fff;border:1px solid #b8c7d8!important;color:var(--ui-blue-dark);transition:.2s ease}
+nav button:hover,#searchBtn:hover{background:var(--ui-blue);border-color:var(--ui-blue)!important;color:#fff}
+.breaking{background:#fff;box-shadow:0 2px 8px rgba(11,35,64,.03)}
+.breaking b{background:var(--ui-blue);border-radius:3px}
+.hero{background:linear-gradient(135deg,#fff 0%,#f5f8fc 100%);border-radius:0 0 18px 18px}
+.hero h1{max-width:850px}
+.btn{background:var(--ui-blue);border-radius:4px;box-shadow:0 5px 14px rgba(21,87,166,.18);transition:transform .2s ease,box-shadow .2s ease}
+.btn:hover{transform:translateY(-2px);box-shadow:0 8px 18px rgba(21,87,166,.25)}
+.cards article{background:#fff;border:1px solid var(--ui-border);border-top:4px solid var(--ui-blue);padding:0 0 20px;border-radius:6px;overflow:hidden;box-shadow:var(--ui-shadow);transition:transform .2s ease,box-shadow .2s ease}
+.cards article:hover{transform:translateY(-4px);box-shadow:0 14px 30px rgba(11,35,64,.12)}
+.cards article h3,.cards article p,.cards article .source{margin-left:18px;margin-right:18px}
+.cards article h3{margin-top:8px}
+.cards .thumbimg{margin-bottom:16px;height:205px}
+.section-head{background:#fff;padding:16px 18px;border:1px solid var(--ui-border);border-bottom:3px solid var(--ui-blue);border-radius:6px 6px 0 0}
+.list article{background:#fff;margin-bottom:0;padding:20px;border-left:3px solid transparent;transition:background .2s ease,border-color .2s ease}
+.list article:hover{background:#f8fbff;border-left-color:var(--ui-blue)}
+.list article h3 a{color:inherit;text-decoration:none}
+.list article h3 a:hover{color:var(--ui-blue)}
+.feature{border-radius:8px;overflow:hidden;box-shadow:0 12px 28px rgba(11,35,64,.16)}
+.feature .visual{height:240px}
+.business article,.sportnote{border-radius:6px;box-shadow:var(--ui-shadow)}
+.newsletter{border-radius:8px;box-shadow:0 12px 30px rgba(11,35,64,.14)}
+.newsletter button{cursor:pointer;transition:background .2s ease}
+.newsletter button:hover{background:#2871c4}
+.source{font-size:11px;letter-spacing:.2px}
+.updated{background:var(--ui-blue-soft);color:#42627f;padding:4px 8px;border-radius:12px;display:inline-block}
+@media(max-width:800px){header{position:sticky;top:0}.hero{border-radius:0 0 12px 12px}.cards article{box-shadow:0 6px 18px rgba(11,35,64,.08)}.section-head{padding:14px}.list article{padding:16px}}
