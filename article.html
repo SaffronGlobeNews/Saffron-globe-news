@@ -95,7 +95,39 @@
   }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>Please return to the homepage and try again.</p>";}
 })();
 </script>
-</body></html>
+</body>
+<script id="sgn-article-schema">
+(function(){
+  const root=document.getElementById("story"); if(!root)return;
+  function setMeta(name,content,property){
+    if(!content)return;
+    let el=document.querySelector((property?"meta[property=\"":"meta[name=\"")+name+"\"]");
+    if(!el){el=document.createElement("meta"); if(property)el.setAttribute("property",name); else el.setAttribute("name",name); document.head.appendChild(el)}
+    el.setAttribute("content",content);
+  }
+  function update(item){
+    const title=item?.title || root.querySelector("h1")?.textContent || document.title.replace(/\\s*\\|.*$/,'');
+    const desc=item?.description || root.querySelector(".article-deck")?.textContent || "International news and geopolitical reporting from Saffron Globe News.";
+    const image=item?.image || root.querySelector(".article-hero")?.src;
+    const published=item?.publishedAt || new Date().toISOString();
+    const modified=item?.publishedAt || published;
+    const url=location.href.split("#")[0];
+    setMeta("og:title",title,true); setMeta("og:description",desc,true); setMeta("og:type","article",true); setMeta("og:url",url,true); setMeta("og:image",image?new URL(image,location.href).href:"",true);
+    setMeta("twitter:card","summary_large_image"); setMeta("twitter:title",title); setMeta("twitter:description",desc); setMeta("twitter:image",image?new URL(image,location.href).href:"");
+    let canon=document.querySelector('link[rel="canonical"]'); if(!canon){canon=document.createElement("link");canon.rel="canonical";document.head.appendChild(canon)} canon.href=url;
+    let schema=document.getElementById("sgn-article-schema-json"); if(!schema){schema=document.createElement("script");schema.type="application/ld+json";schema.id="sgn-article-schema-json";document.head.appendChild(schema)}
+    schema.textContent=JSON.stringify({"@context":"https://schema.org","@type":"NewsArticle","headline":title,"description":desc,"image":image?[new URL(image,location.href).href]:[],"datePublished":published,"dateModified":modified,"author":{"@type":"Organization","name":"Saffron Globe News"},"publisher":{"@type":"Organization","name":"Saffron Globe News","logo":{"@type":"ImageObject","url":new URL("favicon.svg",location.href).href}},"mainEntityOfPage":{"@type":"WebPage","@id":url}});
+  }
+  function fromFeed(){
+    const auto=new URLSearchParams(location.search).get("auto"); if(!auto)return false;
+    fetch("data/news.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{const item=d.stories?.find(s=>s.id===auto);update(item||null)}).catch(()=>update(null)); return true;
+  }
+  if(!fromFeed()){
+    const obs=new MutationObserver(()=>{if(root.querySelector("h1")){obs.disconnect();update(null)}}); obs.observe(root,{childList:true,subtree:true}); if(root.querySelector("h1"))update(null);
+  }
+})();
+</script>
+</html>
 <script>
 (async function(){
  const params=new URLSearchParams(location.search); const auto=params.get("auto"); if(auto===null)return;
