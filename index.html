@@ -230,4 +230,35 @@
 </footer>
 <button id="backTop" class="back-top" type="button" aria-label="Back to top">↑</button>
 <div id="searchPanel" class="search-panel" aria-hidden="true"><div class="search-box" role="dialog" aria-modal="true" aria-labelledby="searchTitle"><button id="closeSearch" aria-label="Close search">×</button><label>SEARCH THE GLOBE</label><h2 id="searchTitle">Find a story</h2><input id="siteSearch" type="search" placeholder="Search headlines, topics or regions…" autocomplete="off" enterkeyhint="search"><div id="searchResults" class="search-results" aria-live="polite"></div></div></div><script src="script.js"></script>
+
+<script id="sgn-home-schema" type="application/ld+json">
+{"@context":"https://schema.org","@type":"NewsMediaOrganization","name":"Saffron Globe News","alternateName":"SGN","description":"Independent, source-led global news covering world affairs, diplomacy, security, markets, culture and sport.","url":"https://parshantsharma29102005-hue.github.io/Saffron-globe-news/","logo":"https://parshantsharma29102005-hue.github.io/Saffron-globe-news/favicon.svg"}
+</script>
+<script>
+/* SGN readership layer: locally tracks article clicks and updates Most Read without sending personal data anywhere. */
+(function(){
+  const KEY="sgn-read-counts-v1";
+  function get(){try{return JSON.parse(localStorage.getItem(KEY)||"{}")}catch{return {}}}
+  function save(v){try{localStorage.setItem(KEY,JSON.stringify(v))}catch{}}
+  function titleOf(a){return (a?.querySelector("h3,h2")?.textContent||"").replace(/\s+/g," ").trim()}
+  function hrefOf(a){return a?.querySelector("h3 a,h2 a")?.getAttribute("href")||""}
+  document.addEventListener("click",e=>{
+    const a=e.target.closest("main article a[href]"); if(!a)return;
+    const href=a.getAttribute("href")||""; if(!href.includes("article.html?"))return;
+    const counts=get(); counts[href]=(counts[href]||0)+1; save(counts);
+  });
+  function render(){
+    const box=document.querySelector(".most-read-grid"); if(!box)return;
+    const counts=get();
+    const articles=[...document.querySelectorAll("main article")].filter(a=>!a.closest("#todayspaper")&&!a.classList.contains("puzzle-card")&&!a.classList.contains("video-card")&&!a.classList.contains("video-feature"));
+    const unique=[]; const seen=new Set();
+    articles.forEach(a=>{const h=hrefOf(a),t=titleOf(a);if(h&&t&&!seen.has(h)){seen.add(h);unique.push({href:h,title:t,label:(a.querySelector("label")?.textContent||"WORLD").trim(),count:counts[h]||0})}});
+    unique.sort((a,b)=>b.count-a.count);
+    const selected=(unique.some(x=>x.count>0)?unique.filter(x=>x.count>0):unique).slice(0,6);
+    box.innerHTML=selected.map((x,i)=>'<article><b>'+String(i+1).padStart(2,"0")+'</b><a href="'+x.href+'">'+x.title+'</a><span>'+x.label+(x.count?' · '+x.count+' reads':' · SGN desk')+'</span></article>').join("");
+  }
+  window.addEventListener("newsFeedUpdated",()=>setTimeout(render,50));
+  setTimeout(render,400);
+})();
+</script>
 </body></html>
