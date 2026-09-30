@@ -1285,3 +1285,26 @@ header>button{
 .back-top.show{opacity:1;visibility:visible;transform:none}
 .dark-mode .editor-utility{background:#050f1c}.dark-mode .back-top{background:#122235;color:#fff;border-color:#29405a}
 @media(max-width:700px){.utility-inner{padding:0 18px;gap:7px;font-size:8px;overflow:hidden;white-space:nowrap}.utility-inner span:nth-child(3),.utility-inner .utility-sep:nth-of-type(1){display:none}.hero-status{padding:0 18px;font-size:8px}.section-kicker{padding:0 18px}.back-top{right:14px;bottom:14px;width:38px;height:38px}}
+
+/* Compact editorial density — reduce empty canvas and fill side rails with news */
+main>section:not(.hero){padding-top:34px;padding-bottom:34px}
+.hero{padding-top:46px;padding-bottom:44px}
+.news-pulse{min-height:0!important;border:1px solid #cfd9e4;background:#fff;padding:0;align-self:start;box-shadow:0 10px 28px rgba(11,35,64,.06)}
+.pulse-head{display:flex;justify-content:space-between;align-items:center;padding:13px 15px;background:#0b2340;color:#fff;font-size:10px;letter-spacing:1.5px}
+.pulse-head b{font-size:8px;color:#9fc7f3;letter-spacing:1px}
+.news-pulse article{display:grid;grid-template-columns:105px 1fr;gap:13px;padding:14px;border-bottom:1px solid #dbe3ec}
+.news-pulse article:last-child{border-bottom:0}
+.news-pulse img{width:105px;height:82px;object-fit:cover;display:block}
+.news-pulse label{font-size:8px;letter-spacing:1.2px;color:#1557a6}
+.news-pulse h4{margin:4px 0;font:700 15px/1.18 "Playfair Display",serif;color:#0b2340}
+.news-pulse p{margin:0;color:#6a7888;font-size:10px;line-height:1.45}
+.dark-mode .news-pulse{background:#0f1c2b;border-color:#29405a}.dark-mode .news-pulse h4{color:#fff}.dark-mode .news-pulse p{color:#a9b7c6}
+.section-kicker{margin-top:24px}
+.cards article{min-height:400px}
+@media(max-width:800px){
+ main>section:not(.hero){padding-top:28px;padding-bottom:28px}
+ .hero{padding-top:34px;padding-bottom:34px}
+ .news-pulse{margin-top:20px}
+ .news-pulse article{grid-template-columns:90px 1fr}
+ .news-pulse img{width:90px;height:72px}
+}
