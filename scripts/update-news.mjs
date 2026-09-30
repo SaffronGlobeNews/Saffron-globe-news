@@ -7,6 +7,33 @@ const categories = ["world", "business", "entertainment", "sports"];
 const base = "https://gnews.io/api/v4/top-headlines";
 const all = [];
 
+async function fetchCategory(url, category) {
+  const maxAttempts = 3;
+
+  for (let attempt = 1; attempt <= maxAttempts; attempt++) {
+    const response = await fetch(url);
+
+    if (response.ok) return await response.json();
+
+    if (response.status === 429) {
+      const retryAfter = Number(response.headers.get("retry-after") || 0);
+      const waitMs = retryAfter > 0
+        ? Math.min(retryAfter * 1000, 15000)
+        : Math.min(2000 * attempt, 10000);
+
+      console.warn(`GNews rate limit for ${category} (429). Waiting ${waitMs}ms before retry ${attempt + 1}/${maxAttempts}.`);
+      if (attempt < maxAttempts) await new Promise(resolve => setTimeout(resolve, waitMs));
+      continue;
+    }
+
+    const body = await response.text();
+    throw new Error(`GNews request failed for ${category}: ${response.status} ${response.statusText} ${body.slice(0, 300)}`);
+  }
+
+  console.warn(`Skipping ${category} because GNews is rate-limiting the request.`);
+  return null;
+}
+
 for (const category of categories) {
   const url = new URL(base);
   url.searchParams.set("category", category);
@@ -14,13 +41,9 @@ for (const category of categories) {
   url.searchParams.set("max", "10");
   url.searchParams.set("apikey", apiKey);
 
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error(`GNews request failed for ${category}: ${response.status} ${response.statusText}`);
-  }
+  const data = await fetchCategory(url, category);
 
-  const data = await response.json();
-  for (const item of data.articles ?? []) {
+  for (const item of data?.articles ?? []) {
     all.push({
       category,
       title: item.title ?? "",
@@ -32,6 +55,9 @@ for (const category of categories) {
       source: item.source?.name ?? "Unknown source"
     });
   }
+
+  // Keep requests spaced out to reduce provider rate-limit pressure.
+  await new Promise(resolve => setTimeout(resolve, 1000));
 }
 
 const seen = new Set();
@@ -45,6 +71,21 @@ const stories = all
   })
   .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
   .slice(0, 30);
+
+// Never erase a working feed if the provider temporarily rate-limits every request.
+if (!stories.length) {
+  try {
+    const existing = JSON.parse(await fs.readFile("data/news.json", "utf8"));
+    if (Array.isArray(existing.stories) && existing.stories.length) {
+      console.warn("No fresh stories returned. Keeping the existing news feed.");
+      process.exit(0);
+    }
+  } catch {
+    // No existing feed to preserve.
+  }
+
+  throw new Error("GNews returned no stories. Check the API plan, quota, key, or provider availability.");
+}
 
 await fs.mkdir("data", { recursive: true });
 await fs.writeFile(
