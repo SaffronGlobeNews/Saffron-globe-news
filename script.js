@@ -50,9 +50,6 @@ function updateSiteDates(){
  const opts={timeZone:"Asia/Kolkata"};
  const full=new Intl.DateTimeFormat("en-IN",{...opts,weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(now);
  const short=new Intl.DateTimeFormat("en-IN",{...opts,month:"long",day:"numeric"}).format(now);
- const opts={timeZone:"Asia/Kolkata"};
- const full=new Intl.DateTimeFormat("en-IN",{...opts,weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(now);
- const short=new Intl.DateTimeFormat("en-IN",{...opts,month:"long",day:"numeric"}).format(now);
  const time=new Intl.DateTimeFormat("en-IN",{...opts,hour:"2-digit",minute:"2-digit",hour12:false,timeZoneName:"short"}).format(now);
  const dateLine=document.getElementById("dateLine");
  if(dateLine) dateLine.textContent=full;
