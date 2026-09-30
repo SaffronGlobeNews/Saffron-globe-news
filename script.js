@@ -4,27 +4,41 @@ searchBtn?.addEventListener("click",()=>{const q=prompt("Search Saffron Globe Ne
 document.getElementById("subscribe")?.addEventListener("submit",e=>{e.preventDefault();const email=e.target.querySelector("input").value;alert("Thanks! "+email+" has been added to the demo newsletter.");e.target.reset()});
 
 if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
- const fallbacks={
-  "MIDDLE EAST":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Tehran_skyline_at_night.jpg",
-  "EUROPE":"https://commons.wikimedia.org/wiki/Special:Redirect/file/European_Parliament_Strasbourg_Hemicycle_-_2014-01-14.jpg",
-  "ASIA-PACIFIC":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Seoul_skyline_from_Namsan.jpg",
-  "UN":"https://commons.wikimedia.org/wiki/Special:Redirect/file/United_Nations_General_Assembly_hall.jpg",
-  "GLOBAL":"https://commons.wikimedia.org/wiki/Special:Redirect/file/United_Nations_General_Assembly_hall.jpg",
-  "UKRAINE":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Kyiv_Maidan_Nezalezhnosti_2014-01-26_01.jpg",
-  "RUSSIA":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Moscow_City_Center.jpg",
-  "GULF":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Doha_skyline.jpg",
-  "YEMEN":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Aden_Yemen.jpg",
-  "TECHNOLOGY":"https://commons.wikimedia.org/wiki/Special:Redirect/file/Computer_server_room.jpg"
- };
+ const fallbacks=[
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tehran_skyline_at_night.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/European_Parliament_Strasbourg_Hemicycle_-_2014-01-14.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Seoul_skyline_from_Namsan.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/United_Nations_General_Assembly_hall.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Kyiv_Maidan_Nezalezhnosti_2014-01-26_01.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Moscow_City_Center.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Doha_skyline.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Aden_Yemen.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Computer_server_room.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Beijing_skyline_at_night.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Brussels_European_Quarter.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Geneva_Palais_des_Nations.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Port_of_Rotterdam_2016.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Suez_Canal_view.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Black_Sea_map.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Gulf_of_Oman.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Arctic_Ocean_map.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/United_Nations_building_in_Geneva.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/London_skyline_from_London_Eye.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Tokyo_Skyline_2019.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Singapore_skyline_2010.jpg",
+  "https://commons.wikimedia.org/wiki/Special:Redirect/file/Container_ship_in_port.jpg"
+ ];
  const articles=[...document.querySelectorAll("main article")];
+ let fallbackIndex=0;
  articles.forEach((article,i)=>{
    article.dataset.story=i;
    const label=(article.querySelector("label")?.textContent||"GLOBAL").toUpperCase();
    if(!article.querySelector("img")){
-     const key=Object.keys(fallbacks).find(k=>label.includes(k))||"GLOBAL";
+     const src=fallbacks[fallbackIndex%fallbacks.length];
+     fallbackIndex++;
      const img=document.createElement("img");
      img.className="thumbimg story-thumb";
-     img.src=fallbacks[key];
+     img.src=src;
      img.alt="Illustrative image for "+label.toLowerCase();
      article.insertBefore(img,article.firstChild);
    }else if(article.querySelector("img:not(.thumbimg)") && article.querySelector("h3")){
