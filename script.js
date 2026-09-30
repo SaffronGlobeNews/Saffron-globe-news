@@ -268,7 +268,8 @@ window.addEventListener("newsFeedUpdated",()=>{
  const label=v=>({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[v]||"GLOBAL NEWS");
  const put=(el,s)=>{
   if(!el)return;
-  const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||"news-placeholder.svg")+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'news-placeholder.svg\';"></div>';
+  const fallback=({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[s.category]||"news-world.svg");
+  const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||fallback)+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"></div>';
   const storyId=s.id||btoa(unescape(encodeURIComponent(s.url||s.title))).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,40);
   el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
  };
@@ -319,4 +320,24 @@ window.addEventListener("newsFeedUpdated",()=>{
  window.addEventListener("scroll",sync,{passive:true});
  top.addEventListener("click",()=>window.scrollTo({top:0,behavior:"smooth"}));
  sync();
+})();
+
+/* Universal image safety: never leave a news card blank or broken. */
+(function(){
+ const fallbackFor=(img)=>{
+   const article=img.closest("article");
+   const href=article?.querySelector("h3 a")?.href||"";
+   const text=((article?.querySelector("label")?.textContent||"")+" "+(article?.querySelector("h3")?.textContent||"")).toLowerCase();
+   if(text.includes("sport")||text.includes("football")||text.includes("cricket")||text.includes("tennis")) return "news-sports.svg";
+   if(text.includes("market")||text.includes("business")||text.includes("stock")||text.includes("econom")) return "news-business.svg";
+   if(text.includes("film")||text.includes("celebr")||text.includes("entertain")||text.includes("culture")) return "news-entertainment.svg";
+   return "news-world.svg";
+ };
+ document.querySelectorAll("main img:not(.site-brand img)").forEach(img=>{
+   img.addEventListener("error",function(){
+     if(this.dataset.fallbackApplied)return;
+     this.dataset.fallbackApplied="1";
+     this.src=fallbackFor(this);
+   });
+ });
 })();
