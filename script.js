@@ -98,6 +98,8 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
      img.decoding="async";
      img.removeAttribute("srcset");
      img.removeAttribute("sizes");
+     img.style.maxWidth="100%";
+     img.style.display="block";
    }
 
    const headline=article.querySelector("h3");
