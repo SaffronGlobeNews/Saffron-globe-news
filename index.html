@@ -14,11 +14,12 @@
 <div class="top"><span id="dateLine">Global Desk</span><span>World · Geopolitics · Diplomacy · Security · Global Affairs</span></div>
 <header><a href="index.html" class="brand site-brand"><img src="saffron-globe-logo.svg" alt="Saffron Globe News"><span class="brand-tagline">The world in focus. Global affairs in context.</span></a><button id="menuBtn">☰</button>
 <nav id="nav"><a href="#latest">Home</a><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#analysis">Analysis</a><a href="#entertainment">Entertainment</a><a href="#sports">Sports</a><a href="#markets">Markets</a><a href="#videos">Video</a><button id="searchBtn" aria-label="Search stories">Search</button></nav></header>
-<div class="breaking"><b>GLOBAL DESK</b> International reporting · English-language global affairs desk.</div>
+<div class="breaking"><b>● LIVE</b> Global Desk · International reporting · English-language global affairs desk.<button id="themeToggle" class="theme-toggle" type="button" aria-label="Switch to dark mode">◐</button></div>
+<section class="live-rail" aria-label="Latest live headlines"><div class="live-rail-label">● LIVE NOW</div><div id="liveRailItems"><span>Loading latest headlines…</span></div></section>
 <main>
 <section class="quick-topics"><div class="topic-nav"><span>EXPLORE</span><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#economy">Economy</a><a href="#analysis">Analysis</a><a href="#entertainment">Entertainment</a><a href="#sports">Sports</a><a href="#markets">Markets</a></div></section>
 
-<section class="hero"><div><label>THE GLOBAL BRIEF · <span class="site-date-short"></span></label><h1>The world in focus.<br><em>Geopolitics in context.</em></h1><p>Clear, source-led coverage of diplomacy, conflicts, security, trade and the decisions shaping international affairs.</p><a class="btn" href="#latest">Read today's stories →</a></div>
+<section class="hero editorial-hero"><div class="hero-intro"><label>THE GLOBAL BRIEF · <span class="site-date-short"></span></label><h1>The world in focus.<br><em>Geopolitics in context.</em></h1><p>Clear, source-led coverage of diplomacy, conflicts, security, trade and the decisions shaping international affairs.</p><a class="btn" href="#latest">Read today's stories →</a></div>
 <article class="feature"><div class="visual"><img src="https://commons.wikimedia.org/wiki/Special:Redirect/file/Rebeca_Grynspan_joins_women_leaders_at_Africa-Europe_Foundation_event_ahead_of_7th_AU-EU_Summit.jpg" alt="Women leaders at an Africa-Europe Foundation event"></div><div><label>GLOBAL DIPLOMACY · FILE PHOTO</label><h2>Diplomacy enters a period of sharper strategic realignment</h2><p>Governments are balancing security, trade and alliances as competing diplomatic initiatives reshape international relations.</p><a class="source" href="https://commons.wikimedia.org/wiki/File:Rebeca_Grynspan_joins_women_leaders_at_Africa-Europe_Foundation_event_ahead_of_7th_AU-EU_Summit.jpg" target="_blank" rel="noopener">Photo credit & license →</a></div></article></section>
 
 <section id="latest"><div class="head"><h2>Latest World News</h2><span class="updated">Updated <span class="site-date"></span> · <span class="site-time"></span></span></div><div class="cards">
@@ -60,7 +61,13 @@
 
 <section id="markets" class="choice-desk markets-desk">
   <div class="choice-head"><div><span class="eyebrow">MARKETS DESK</span><h2>Stock Markets & Business</h2></div><p>Market news, companies, indices, commodities and the economic stories moving investors.</p></div>
-  <div class="market-strip">
+  <div class="market-ticker" aria-label="Market watch">
+  <div><span>NIFTY 50</span><strong>Market Watch</strong><small>Connect live market data before publication.</small></div>
+  <div><span>SENSEX</span><strong>Indian Markets</strong><small>Indices, companies and economic signals.</small></div>
+  <div><span>S&amp;P 500</span><strong>Global Markets</strong><small>Major benchmarks and commodities.</small></div>
+  <div><span>GOLD · OIL</span><strong>Commodities</strong><small>Energy and safe-haven market context.</small></div>
+</div>
+<div class="market-strip">
     <div><span>GLOBAL MARKETS</span><strong>Market Watch</strong><small>Prices and data should be connected to a live market-data provider before publication.</small></div>
     <div><span>INDICES</span><strong>NIFTY · SENSEX · S&amp;P 500</strong><small>Track major benchmarks in one dedicated destination.</small></div>
     <div><span>BUSINESS</span><strong>Companies · Economy · Trade</strong><small>Business reporting alongside market context.</small></div>
@@ -203,6 +210,16 @@
 <article><label>TECHNOLOGY · SECURITY · US</label><h3>Major technology companies sign voluntary AI safety accord</h3><p>Several major technology companies have signed a voluntary agreement covering internal and external reviews of AI development. AP reports that the initiative is intended to establish shared safety practices while governments continue debating how AI should be governed internationally.</p><a class="source" href="https://apnews.com/article/c6dd26d8e67270db543c37ac3762acd9" target="_blank" rel="noopener">Full report · AP →</a></article>
 <article><label>UKRAINE · ENERGY · SECURITY</label><h3>Russia escalates strikes against Ukraine's energy infrastructure</h3><p>Reports from September 30 described a major Russian air campaign against Ukrainian energy facilities. The attacks come ahead of winter and add pressure to Ukraine's electricity and heating systems. The development remains closely tied to European security planning and the wider war's impact on critical infrastructure.</p><a class="source" href="https://moderndiplomacy.eu/2026/09/30/russia-escalates-strikes-on-ukraines-energy-grid-ahead-of-winter/" target="_blank" rel="noopener">Background report →</a></article>
 </div></section></main>
-<footer><strong>SAFFRON GLOBE NEWS</strong><p>The world in focus. Geopolitics in context.</p><p class="note">International English-language publication. Photographs are linked to their source/licensing pages; news reporting is attributed to the original outlet.</p><div class="copyright">© 2026 Saffron Globe News · Global editorial project.</div></footer>
+<section id="newsletterPro" class="newsletter-pro"><div><span class="eyebrow">THE DAILY BRIEF</span><h2>Get the world in focus.</h2><p>A concise global-news briefing designed for readers who want the important stories without the noise.</p></div><form id="newsletterProForm"><input type="email" required placeholder="Your email address" aria-label="Email address"><button type="submit">Subscribe →</button></form></section>
+
+<footer class="pro-footer">
+<div class="footer-brand"><strong>SAFFRON GLOBE NEWS</strong><span>The world in focus. Global affairs in context.</span></div>
+<div class="footer-cols">
+<div><b>SECTIONS</b><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#analysis">Analysis</a></div>
+<div><b>MORE</b><a href="#entertainment">Entertainment</a><a href="#sports">Sports</a><a href="#markets">Markets</a><a href="#videos">Video</a></div>
+<div><b>PUBLICATION</b><a href="#todayspaper">Today's Newspaper</a><a href="#puzzles">Puzzles</a><a href="#newsletterPro">Newsletter</a><a href="#latest">Latest News</a></div>
+</div>
+<div class="footer-bottom"><span>© 2026 Saffron Globe News</span><span>Independent international news project · Source attribution provided for transparency.</span></div>
+</footer>
 <div id="searchPanel" class="search-panel" aria-hidden="true"><div class="search-box" role="dialog" aria-modal="true" aria-labelledby="searchTitle"><button id="closeSearch" aria-label="Close search">×</button><label>SEARCH THE GLOBE</label><h2 id="searchTitle">Find a story</h2><input id="siteSearch" type="search" placeholder="Search headlines, topics or regions…" autocomplete="off" enterkeyhint="search"><div id="searchResults" class="search-results" aria-live="polite"></div></div></div><script src="script.js"></script>
 </body></html>
