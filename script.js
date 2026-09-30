@@ -294,3 +294,28 @@ window.addEventListener("newsFeedUpdated",()=>{
  ["entertainment","sports"].forEach(cat=>feed.filter(x=>x.category===cat).slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#"+cat+" .choice-grid article")[i],s)));
  feed.filter(x=>x.category==="business").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#markets .market-cards article")[i],s));
 });
+
+
+/* Modern newsroom interactions */
+(function(){
+ const theme=document.getElementById("themeToggle");
+ const stored=localStorage.getItem("sgn-theme");
+ if(stored==="dark")document.body.classList.add("dark-mode");
+ function sync(){if(!theme)return;theme.textContent=document.body.classList.contains("dark-mode")?"☀":"◐";theme.setAttribute("aria-label",document.body.classList.contains("dark-mode")?"Switch to light mode":"Switch to dark mode")}
+ theme?.addEventListener("click",()=>{document.body.classList.toggle("dark-mode");localStorage.setItem("sgn-theme",document.body.classList.contains("dark-mode")?"dark":"light");sync()});sync();
+
+ const rail=document.getElementById("liveRailItems"), ticker=document.getElementById("latestTicker");
+ function renderLive(){
+  const stories=(window.SAFFRON_NEWS?.stories||[]);
+  if(!stories.length)return;
+  const items=stories.slice(0,6);
+  const make=(s)=>'<a href="article.html?auto='+encodeURIComponent(s.id||"")+'">'+escapeHTML(s.title||"Latest story")+'</a>';
+  if(rail)rail.innerHTML=items.slice(0,4).map(make).join('<span>•</span>');
+  if(ticker)ticker.innerHTML=items.map(make).join('<span> · </span>');
+ }
+ window.addEventListener("newsFeedUpdated",renderLive);
+ renderLive();
+
+ const form=document.getElementById("newsletterProForm");
+ form?.addEventListener("submit",e=>{e.preventDefault();const btn=form.querySelector("button");btn.textContent="Subscribed ✓";btn.disabled=true;form.reset()});
+})();
