@@ -94,3 +94,20 @@
 })();
 </script>
 </body></html>
+<script>
+(async function(){
+ const params=new URLSearchParams(location.search); const auto=params.get("auto"); if(auto===null)return;
+ const root=document.getElementById("story");
+ try{
+  const data=await fetch("data/news.json",{cache:"no-store"}).then(r=>r.json());
+  const item=data.stories?.[Number(auto)];
+  if(!item){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>This automated edition story is no longer available.</p>";return;}
+  const esc=v=>String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const title=item.title||"Saffron Globe News";
+  const deck=item.description||item.content||"Source-led international news report.";
+  const body=item.content||deck;
+  document.title=title+" | Saffron Globe News";
+  root.innerHTML='<div class="article-kicker">'+esc(item.category||"GLOBAL NEWS")+'</div><h1>'+esc(title)+'</h1><div class="article-deck">'+esc(deck)+'</div><div class="article-meta">Saffron Globe News · Automated news desk · '+esc(item.source||"Original publisher")+'</div>'+(item.image?'<img class="article-hero" src="'+esc(item.image)+'" alt="'+esc(title)+'">':'')+'<div class="photo-credit">Image supplied by the original news feed. Check the source report for rights and attribution.</div><div class="article-body"><p class="standfirst">'+esc(deck)+'</p><h2>What the report says</h2><p>'+esc(body)+'</p><h2>Source and context</h2><p>This page presents the available source description and content without adding unverified details. Readers should use the original report for the full story, updates, quotations and additional context.</p><a class="article-source" href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">Read original report · '+esc(item.source||"Source")+' →</a></div>';
+ }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>The automated edition could not be loaded right now.</p>";}
+})();
+</script>
