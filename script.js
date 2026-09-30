@@ -69,6 +69,17 @@ scheduleNextDateRefresh();
 
 
 if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
+ const sectionStoryMap={
+   entertainment:["Films & Celebrities","Celebrity desk","Reviews & Culture"],
+   sports:["Global Sport","Cricket","Football · Tennis · More"],
+   markets:["Stocks","Markets","Personal Finance"]
+ };
+ Object.entries(sectionStoryMap).forEach(([section,labels])=>{
+   const root=document.getElementById(section);
+   if(!root)return;
+   root.querySelectorAll("article").forEach((article,i)=>article.dataset.choiceSection=section);
+ });
+
  const realPhotoPool=[
   "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9922619.jpg",
   "https://d34w7g4gy10iej.cloudfront.net/photos/2609/9922617.jpg",
