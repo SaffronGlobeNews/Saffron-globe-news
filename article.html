@@ -45,7 +45,9 @@
 <script>
 (async function(){
   const root=document.getElementById("story");
-  const id=Number(new URLSearchParams(location.search).get("story"));
+  const params=new URLSearchParams(location.search);
+  if(params.has("auto"))return;
+  const id=Number(params.get("story"));
   if(!Number.isInteger(id)||id<0){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>This story link is invalid. Return to the homepage to choose another report.</p>";return;}
   try{
     const html=await fetch("index.html").then(r=>r.text());
