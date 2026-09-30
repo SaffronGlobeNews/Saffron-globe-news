@@ -1,0 +1,9 @@
+{
+  "name":"Saffron Globe News",
+  "short_name":"SGN",
+  "start_url":"./",
+  "display":"standalone",
+  "background_color":"#071a2d",
+  "theme_color":"#1557a6",
+  "icons":[{"src":"favicon.svg","sizes":"64x64","type":"image/svg+xml"}]
+}
