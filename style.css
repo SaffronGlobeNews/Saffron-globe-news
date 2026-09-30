@@ -973,3 +973,39 @@ a{-webkit-tap-highlight-color:transparent}
   .image-lightbox{padding:18px}
   .image-lightbox .lightbox-caption{left:18px;right:18px}
 }
+
+
+/* =========================================================
+   Newspaper Puzzle Page
+   ========================================================= */
+.puzzle-desk{max-width:1180px;margin:18px auto 28px;padding:42px 24px;border-top:4px double #0b2340;background:#f8f7f3}
+.puzzle-head{display:flex;justify-content:space-between;align-items:end;gap:30px;border-bottom:1px solid #b8c4d1;padding-bottom:16px;margin-bottom:20px}
+.puzzle-head h2{font:800 34px/1.05 "Playfair Display",serif;margin:4px 0 0;color:#0b2340}
+.puzzle-head p{max-width:390px;margin:0;color:#68788a;font-size:12px;line-height:1.55}
+.puzzle-grid{display:grid;grid-template-columns:1.25fr .9fr .9fr;gap:18px}
+.puzzle-card{background:#fff;border:1px solid #b8c4d1;padding:20px;box-shadow:0 5px 18px rgba(7,26,45,.05)}
+.puzzle-card-head{display:flex;justify-content:space-between;gap:15px;border-bottom:1px solid #d5deea;padding-bottom:12px;margin-bottom:16px}
+.puzzle-card label{font-size:9px;letter-spacing:1.4px;font-weight:800;color:#1557a6}
+.puzzle-card h3{font:800 20px/1.1 "Playfair Display",serif;color:#0b2340;margin:4px 0 0}
+.puzzle-number{font:800 22px/1 "Playfair Display",serif;color:#9aa8b7}
+.crossword{display:grid;grid-template-columns:repeat(5,1fr);max-width:250px;margin:0 auto 18px;border:2px solid #0b2340}
+.cw-cell{aspect-ratio:1;border:1px solid #0b2340;position:relative;background:#fff}
+.cw-cell.black{background:#0b2340}
+.cw-cell span{position:absolute;top:2px;left:3px;font-size:7px;font-weight:800;color:#0b2340;z-index:2}
+.cw-cell input{width:100%;height:100%;border:0;background:transparent;text-align:center;font:700 20px "DM Sans",sans-serif;text-transform:uppercase;color:#0b2340;outline:none;padding:5px 2px}
+.cw-cell input:focus{box-shadow:inset 0 0 0 2px #1557a6}
+.clues{display:grid;grid-template-columns:1fr 1fr;gap:18px;border-top:1px solid #d5deea;padding-top:13px}
+.clues b{font-size:11px;text-transform:uppercase;letter-spacing:1px;color:#1557a6}
+.clues p{font-size:10px;line-height:1.45;margin:7px 0;color:#31455b}
+.puzzle-intro,.word-note,.sudoku-note{font-size:11px;line-height:1.5;color:#52667a;margin:0 0 14px}.puzzle-intro strong{color:#0b2340}
+.word-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:3px;max-width:260px;margin:0 auto 13px}
+.word-grid button{aspect-ratio:1;border:1px solid #c5d2df;background:#f4f7fa;color:#0b2340;font-weight:800;font-size:14px;cursor:pointer}.word-grid button.found{background:#1557a6;color:#fff;border-color:#1557a6}
+.word-grid button:hover{background:#dfeaf6}
+.sudoku-grid{display:grid;grid-template-columns:repeat(6,1fr);max-width:260px;margin:0 auto 13px;border:2px solid #0b2340}
+.sudoku-grid input{width:100%;aspect-ratio:1;border:1px solid #aebdcb;background:#fff;text-align:center;font:700 18px "DM Sans",sans-serif;color:#0b2340;outline:none;min-width:0}
+.sudoku-grid input:nth-child(3n){border-right:2px solid #0b2340}.sudoku-grid input:nth-child(n+19):nth-child(-n+24){border-top:2px solid #0b2340}.sudoku-grid input:focus{background:#edf4fb;box-shadow:inset 0 0 0 2px #1557a6}
+.puzzle-actions{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:14px;border-top:1px solid #d5deea;padding-top:12px}
+.puzzle-actions button{border:1px solid #1557a6;background:#1557a6;color:#fff;padding:8px 12px;border-radius:3px;font-size:10px;font-weight:800;letter-spacing:.5px;cursor:pointer}.puzzle-actions button:hover{background:#0b2340}
+.puzzle-actions .puzzle-reset{background:#fff;color:#1557a6}.puzzle-result{font-size:10px;font-weight:700;color:#1557a6}
+@media(max-width:950px){.puzzle-grid{grid-template-columns:1fr 1fr}.sudoku-card{grid-column:span 2}.puzzle-head{align-items:start;flex-direction:column}}
+@media(max-width:650px){.puzzle-desk{padding:32px 16px;margin-left:0;margin-right:0}.puzzle-grid{grid-template-columns:1fr}.sudoku-card{grid-column:auto}.puzzle-head h2{font-size:29px}.clues{grid-template-columns:1fr}.crossword{max-width:280px}}
