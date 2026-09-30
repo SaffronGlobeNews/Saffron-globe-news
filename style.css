@@ -1206,3 +1206,64 @@ button,.theme-toggle{transition:transform .22s ease,box-shadow .22s ease,backgro
 button:hover,.theme-toggle:hover{transform:translateY(-2px)}
 @media(prefers-reduced-motion:reduce){*,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important;scroll-behavior:auto!important}}
 @media(max-width:700px){#liveRailItems{animation-duration:28s}#latestTicker{animation-duration:34s}}
+
+
+/* SGN classic masthead — restored bold blue newspaper banner */
+header{
+  max-width:1240px;
+  min-height:104px;
+  padding:16px 28px;
+  background:#1557a6!important;
+  border:0!important;
+  box-shadow:0 6px 18px rgba(10,45,90,.18);
+}
+.site-brand{display:flex;align-items:center;gap:16px}
+.site-brand img{
+  width:360px!important;
+  height:100px!important;
+  max-height:none!important;
+  object-fit:contain;
+  background:#1557a6;
+}
+.brand-tagline{
+  color:rgba(255,255,255,.86)!important;
+  font-size:11px;
+  letter-spacing:.8px;
+  white-space:nowrap;
+}
+header nav{gap:20px}
+header nav a{
+  color:#fff!important;
+  font-weight:800;
+  font-size:13px;
+  position:relative;
+}
+header nav a::after{
+  background:#fff!important;
+}
+header nav a:hover{color:#fff!important;opacity:.82}
+header nav button,#searchBtn{
+  color:#fff!important;
+  border-color:rgba(255,255,255,.65)!important;
+  background:rgba(255,255,255,.08)!important;
+}
+header nav button:hover,#searchBtn:hover{
+  background:#fff!important;
+  color:#1557a6!important;
+}
+header>button{
+  color:#fff!important;
+}
+@media(max-width:1000px){
+  .site-brand img{width:300px!important;height:84px!important}
+  .brand-tagline{display:none}
+}
+@media(max-width:800px){
+  header{min-height:78px;padding:9px 18px}
+  .site-brand img{width:250px!important;height:68px!important}
+  nav{
+    top:78px!important;
+    background:#1557a6!important;
+  }
+  nav a{color:#fff!important}
+}
