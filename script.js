@@ -322,6 +322,20 @@ window.addEventListener("newsFeedUpdated",()=>{
  sync();
 })();
 
+/* Global image-error guard: applies to static and dynamically inserted stories. */
+document.addEventListener("error",function(e){
+ const img=e.target;
+ if(!(img instanceof HTMLImageElement) || img.dataset.fallbackApplied)return;
+ if(img.closest(".site-brand"))return;
+ img.dataset.fallbackApplied="1";
+ const article=img.closest("article");
+ const text=((article?.querySelector("label")?.textContent||"")+" "+(article?.querySelector("h3,h2")?.textContent||"")).toLowerCase();
+ const fallback=(text.includes("sport")||text.includes("football")||text.includes("cricket")||text.includes("tennis"))?"news-sports.svg":
+   (text.includes("market")||text.includes("business")||text.includes("stock")||text.includes("econom"))?"news-business.svg":
+   (text.includes("film")||text.includes("celebr")||text.includes("entertain")||text.includes("culture"))?"news-entertainment.svg":"news-world.svg";
+ img.src=fallback;
+},true);
+
 /* Universal image safety: never leave a news card blank or broken. */
 (function(){
  const fallbackFor=(img)=>{
