@@ -21,20 +21,23 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
   "Soldiers with the NATO FLF Battle Group-Poland conduct joint weapons familiarization training in Poland (9919236).jpg",
   "U S Marines, Norwegian Home Guard Conduct Joint Displacement in Jan Mayen (9904614).jpg",
   "U S Marines, Norwegian Home Guard Conduct Joint Displacement in Jan Mayen (9904615).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-02).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-04).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-01).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-03).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-22).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-39).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-07).jpg",
-  "Weekly college meeting of the von der Leyen Commission, 09-09-2026 (P-070430-00-33).jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 13.jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 27.jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 19.jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 20 (cropped).jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 18 (cropped).jpg",
+  "United Nations General Assembly 2026 - September 22, 2026 - 15 (cropped).jpg",
+  "Secretary Rubio Meets with the Press (55546667696).jpg",
+  "Visit of Kaja Kallas, High Representative of the Union for Foreign Affairs and Security Policy and Vice-President of the European Commissio, to Lithuania (P-070406-00-02).jpg",
+  "Visit of Kaja Kallas, High Representative of the Union for Foreign Affairs and Security Policy and Vice-President of the European Commissio, to Lithuania (P-070406-00-03).jpg",
+  "Mark Carney meets Ursula von der Leyen 2026-09 (1).jpg",
+  "U S Army and Japanese Ground Self Defense Force Soldiers Conduct Aerial Insertion Training at Orient Shield 26 (9955472).jpg",
+  "SGS 26- Multinational Sustained Airborne Training (9915876).jpg",
   "Qatar Boeing 777-300ER A7-BET MD1.jpg",
   "Boeing 787-9 (c-n 64237, A7-BIB) 2026-09-04 Andre Gerwing Collection ID 031020.jpg",
   "A7-BCZ.jpg",
   "A7-MSD@PEK (20260908143834).jpg"
- ];
- let photoIndex=0;
+ ]; let photoIndex=0;
  const photoUrl=name=>"https://commons.wikimedia.org/wiki/Special:Redirect/file/"+encodeURIComponent(name);
  const articles=[...document.querySelectorAll("main article")];
  articles.forEach((article,i)=>{
