@@ -1,5 +1,306 @@
 {
-  "updatedAt": null,
+  "updatedAt": "2026-09-30T23:21:38.563Z",
   "source": "GNews API",
-  "stories": []
+  "stories": [
+    {
+      "category": "world",
+      "title": "Headless body found floating in sea off popular Spanish holiday town after being spotted by horrified tourists on boat",
+      "description": "A HEADLESS body has been found floating off a Spanish holiday hotspot's coast after being spotted by horrified tourists.\nThe naked rotting...",
+      "content": "A HEADLESS body has been found floating off a Spanish holiday hotspot’s coast after being spotted by horrified tourists.\nThe naked rotting corpse was missing its arms and legs when local police recovered it from the sea in Valencia.\nShocked tourists ... [1252 chars]",
+      "image": "https://www.thesun.ie/wp-content/uploads/sites/3/2026/09/canet-de-berenguer-beach-skyline-1112299926.jpg?quality=90&strip=all&w=1920&h=1080&crop=1",
+      "url": "https://www.thesun.ie/news/17695790/headless-body-found-spanish-holiday-town/",
+      "publishedAt": "2026-09-30T11:21:32Z",
+      "source": "The Irish Sun"
+    },
+    {
+      "category": "entertainment",
+      "title": "Farrah Abraham unrecognizable after jaw surgery leaves face severely swollen",
+      "description": "Farrah Abraham is unable to speak for two months and has lost hearing in her right ear after undergoing major double-disc jaw surgery.",
+      "content": "Farrah Abraham is recovering from major jaw surgery that has left her unable to speak and eating only liquids for the next several weeks.\nThe “Teen Mom” alum, 35, recently underwent double-disc jaw surgery after dealing with ongoing jaw issues.\nHer j... [1971 chars]",
+      "image": "https://pagesix.com/wp-content/uploads/sites/3/2026/09/143136089.jpg?quality=75&strip=all&w=1200",
+      "url": "https://pagesix.com/2026/09/30/celebrity-news/farrah-abraham-unrecognizable-after-jaw-surgery-leaves-face-severely-swollen/",
+      "publishedAt": "2026-09-30T11:21:00Z",
+      "source": "pagesix.com"
+    },
+    {
+      "category": "entertainment",
+      "title": "Karan Johar Announces The End Of Koffee With Karan",
+      "description": "One of India’s most talked-about celebrity chat shows is coming to an end. Karan Johar has officially announced that Koffee With Karan, the legendary and",
+      "content": "One of India’s most talked-about celebrity chat shows is coming to an end. Karan Johar has officially announced that Koffee With Karan, the legendary and controversial talk show, will conclude with its upcoming ninth season.\nThe show began in 2004, a... [934 chars]",
+      "image": "https://cdn.gulte.com/wp-content/uploads/2026/09/coffe-with-karan.jpg",
+      "url": "https://www.gulte.com/movienews/434403/karan-johar-announces-the-end-of-koffee-with-karan",
+      "publishedAt": "2026-09-30T11:20:22Z",
+      "source": "Gulte"
+    },
+    {
+      "category": "world",
+      "title": "UN secretary general race: Security Council veto wielders still undecided",
+      "description": "With just three months remaining before António Guterres’ term ends, Costa Rican Rebeca Grynspan has again topped a fourth informal straw poll at the Security Council, ahead of Guyana’s Carolyn Rodrigues-Birkett, with Argentina’s Rafael Grossi slightly behind.",
+      "content": "On Tuesday, the Security Council held its fourth straw poll, in which all 15 members rated each candidate as “encourage”, “discourage”, or “no opinion”. Rebeca Grynspan once again emerged on top, further cementing her lead. The current head of the UN... [3428 chars]",
+      "image": "https://prodgs-17455.kxcdn.com/photos/27094c3f-90df-4985-8a4a-2f2f737ecbef/medium",
+      "url": "https://genevasolutions.news/global-news/un-secretary-general-race-security-council-veto-wielders-still-undecided",
+      "publishedAt": "2026-09-30T11:20:09Z",
+      "source": "Geneva Solutions"
+    },
+    {
+      "category": "sports",
+      "title": "Luis Figo urges Mourinho to give Real Madrid summer signing a bigger role: ‘Has a lot of technical quality’",
+      "description": "Real Madrid made several important signings in the summer, but some of them have had a mixed start to life at the Santiago Bernabeu.Bernardo Silva arrived from Manchester City on a free transfer, and ...",
+      "content": "Real Madrid made several important signings in the summer, but some of them have had a mixed start to life at the Santiago Bernabeu.\nBernardo Silva arrived from Manchester City on a free transfer, and the Portuguese midfielder has not made a particul... [2273 chars]",
+      "image": "https://s.yimg.com/lo/mysterio/api/295680eca8df731ff0e99a28a6d5ac4d67462dd8c6ab35a89f5e70c609906f32/lightyear_networkapi/resizefill_w1200_h630%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fmadrid_universal_articles_561%2F760848ecf8f6cbb3fd6b8859f41ca688.jpg",
+      "url": "https://sports.yahoo.com/articles/luis-figo-urges-mourinho-real-112000264.html",
+      "publishedAt": "2026-09-30T11:20:00Z",
+      "source": "Yahoo Sports"
+    },
+    {
+      "category": "entertainment",
+      "title": "Lady A's Charles Kelley diagnosed with rare blood cancer",
+      "description": "Lady A singer Charles Kelley has revealed he has been diagnosed with blood cancer.",
+      "content": "Lady A singer Charles Kelley has revealed he has been diagnosed with blood cancer.\nThe American musician, 45, is best known as the co-lead vocalist and founding member of the country music trio Lady A, which was formed in 2006.\nPosting a video on Ins... [3169 chars]",
+      "image": "https://www.rte.ie/images/002518a1-1600.jpg",
+      "url": "https://www.rte.ie/entertainment/2026/0930/1593484-lady-as-charles-kelley-diagnosed-with-rare-blood-cancer/",
+      "publishedAt": "2026-09-30T11:19:55Z",
+      "source": "RTE.ie"
+    },
+    {
+      "category": "world",
+      "title": "Interrailing in middle age: Five countries in a fortnight and not a single airport in sight",
+      "description": "Five countries, 15 days and not a single airport in sight: David Walsh discovers the joys of interrailing in middle age. The train, creaking and jolting,...",
+      "content": "It has long been a rite of passage for school leavers and university students to discover Europe by rail, but for those like me who inexplicably missed the train leaving the station in their youth, there can be a reprieve in later years.\nWhile such h... [6259 chars]",
+      "image": "https://www.nzherald.co.nz/resizer/v2/ULNXS6O5T5DDRGBOGXWLOMD7OM.jpg?auth=075dc794206cbd7adcfe6ca25eb84df5cb9fbf62f298447aea700c144bde17a2&width=1200&height=675&quality=70&focal=808%2C923&smart=false",
+      "url": "https://www.nzherald.co.nz/travel/interrailing-in-middle-age-five-countries-in-a-fortnight-and-not-a-single-airport-in-sight/IDQ7IJECHJFAJCIS4LVOF2OJGM/",
+      "publishedAt": "2026-09-30T11:19:06Z",
+      "source": "NZ Herald"
+    },
+    {
+      "category": "entertainment",
+      "title": "Kim Min Ha And Joo Jong Hyuk’s Paths Converge Between Day And Night In “The Table: Day And Night”",
+      "description": "The upcoming romance film “The Table: Day and Night” has unveiled new character stills featuring Kim Min Ha and Joo Jong Hyuk! Set during the transition",
+      "content": "The upcoming romance film “The Table: Day and Night” has unveiled new character stills featuring Kim Min Ha and Joo Jong Hyuk!\nSet during the transition from summer to fall, “The Table: Day and Night” captures the witty, understated, and charming con... [1319 chars]",
+      "image": "https://0.soompi.io/wp-content/uploads/2026/09/30041529/The-Table-Day-and-Night-3.jpg",
+      "url": "https://www.soompi.com/article/1874529wpp/kim-min-ha-and-joo-jong-hyuks-paths-converge-between-day-and-night-in-the-table-day-and-night",
+      "publishedAt": "2026-09-30T11:18:54Z",
+      "source": "Soompi"
+    },
+    {
+      "category": "world",
+      "title": "Iran mocks Trump using 'Hrithik Roshan' meme: 'Trump realising ...'",
+      "description": "Iranian President Masoud Pezeshkian told the United Nations General Assembly last week that Tehran would never surrender to US pressure, signalling that Iran remains opposed to Washington's demands.",
+      "content": "Iran, on Wednesday, launched a humorous attack on US President Donald Trump using a meme from actor Hrithik Roshan's movie Koi..Mil Gaya.\nThe meme was shared on the official X handle of the Iranian Embassy in India.\nThis came after Donald Trump said ... [1542 chars]",
+      "image": "https://images.moneycontrol.com/static-mcnews/2026/09/20260930111702_iran-trump-meme.jpg",
+      "url": "https://www.moneycontrol.com/world/iran-mocks-trump-using-hrithik-roshan-meme-trump-realising-article-14042052.html",
+      "publishedAt": "2026-09-30T11:18:44Z",
+      "source": "Moneycontrol.com"
+    },
+    {
+      "category": "business",
+      "title": "Fuel Costs Jumped 36% and Carnival Still Posted Record Attributable Net Income. Here's What That Says About the Cruise Boom.",
+      "description": "You know a company is hot when a massive increase in a cost item can't stop it from netting a profit approaching $2 billion.",
+      "content": "If you were told that the quarterly costs for a company's key input had risen by 36% year over year, wouldn't you assume that its profitability took a serious hit for the period?\nThat'd be a sensible reaction; however, in the case of Carnival's (CCL ... [4121 chars]",
+      "image": "https://g.foolcdn.com/image/?url=https%3A%2F%2Fcdn.content.foolcdn.com%2Fimages%2F1umn9qeh%2Fproduction%2F5d81c03d648b39b795409a86f3f3d8ab0c0569c9-2000x1200.jpg%3Fw%3D800%26q%3D75%26fit%3Dmax%26auto%3Dformat&w=1200&op=resize",
+      "url": "https://www.fool.com/investing/2026/09/30/fuel-costs-jumped-36-and-carnival-still-posted-record-attributable-net-income-here-s-what-that-says-about-the-cruise-boom/",
+      "publishedAt": "2026-09-30T11:18:24Z",
+      "source": "The Motley Fool"
+    },
+    {
+      "category": "entertainment",
+      "title": "Millionaire Medley lotto draw #4762: One West Aussie wins life-changing $1 million division one prize",
+      "description": "One West Aussie has had their life changed forever on Wednesday evening thanks to the Millionaire Medley lotto draw.",
+      "content": "One West Aussie’s life has changed forever after landing a $1 million windfall in Wednesday night’s Millionaire Medley lotto draw.\nThe lucky player was one of just two ticket holders across Australia to take home the $1m division one prize, with the ... [946 chars]",
+      "image": "https://images.perthnow.com.au/publication/C-22950520/0d2a3416f18eb67931aa56142cb4b9d81a733922-16x9-x0y0w2048h1152.jpg?imwidth=1200",
+      "url": "https://www.perthnow.com.au/lifestyle/lotto/millionaire-medley-lotto-draw-4762-one-west-aussie-wins-life-changing-1-million-division-one-prize-c-22950520",
+      "publishedAt": "2026-09-30T11:18:00Z",
+      "source": "PerthNow"
+    },
+    {
+      "category": "entertainment",
+      "title": "Soheila Sokhanvari’s painstaking miniatures memorialise the stolen lives of Iranian cultural icons",
+      "description": "Sokhanvari’s work asks what remains after a life has been pushed out of history – and whether a portrait can resurrect a woman consigned to oblivion.",
+      "content": "A photograph survives, but the life around it has been dismantled. A voice remains on an old recording, but the singer has been forbidden to stand before an audience. A face flickers across a cinema screen, while the woman it belonged to has lost her... [5846 chars]",
+      "image": "https://images.theconversation.com/files/761165/original/file-20260921-60-518mhf.jpg?ixlib=rb-4.1.1&rect=804%2C94%2C1615%2C807&q=45&auto=format&w=1356&h=668&fit=crop",
+      "url": "https://theconversation.com/soheila-sokhanvaris-painstaking-miniatures-memorialise-the-stolen-lives-of-iranian-cultural-icons-292505",
+      "publishedAt": "2026-09-30T11:17:54Z",
+      "source": "The Conversation"
+    },
+    {
+      "category": "sports",
+      "title": "Arsenal FC: Viktor Gyokeres issues injury update after leaving match in blood-stained kit",
+      "description": "Gunners handed another concern after Kai Havertz blow",
+      "content": "Viktor Gyokeres laughed off questions regarding his fitness as he left Sweden’s match against Poland in blood-stained kit.\nThe Arsenal striker has made a slow start to the season at club level having fallen behind Kai Havertz in the pecking order. Bu... [1545 chars]",
+      "image": "https://static.standard.co.uk/2026/09/30/11/2297097007..?width=1200&auto=webp&quality=75",
+      "url": "https://www.standard.co.uk/sport/football/gyokeres-arsenal-fc-blood-stained-injury-latest-b1298984.html",
+      "publishedAt": "2026-09-30T11:17:15Z",
+      "source": "London Evening Standard"
+    },
+    {
+      "category": "entertainment",
+      "title": "'LOL: Last One Laughing PH' returns for Season 2 this October",
+      "description": "\"LOL: Last One Laughing\" is back for Season 2!",
+      "content": "\"LOL: Last One Laughing\" is back for Season 2!\nFollowing the success of its debut season in 2024, Vice Ganda returns as the host of the comedy competition where 10 Filipino comedians are set to face off and make each other laugh.\nThe contestants are ... [670 chars]",
+      "image": "https://images.gmanews.tv/webpics/2026/09/vice_ganda_2026_09_30_19_14_07.jpg",
+      "url": "https://www.gmanetwork.com/news/showbiz/chikaminute/1004310/lol-last-one-laughing-ph-returns-for-season-2-this-october/story/",
+      "publishedAt": "2026-09-30T11:17:04Z",
+      "source": "GMA Network"
+    },
+    {
+      "category": "world",
+      "title": "US charges 19 over alleged drug-trafficking network in Dallas",
+      "description": "The United States Department of Justice has charged 19 people allegedly connected to a major drug-trafficking operation in Dallas, Texas. The charges",
+      "content": "The United States Department of Justice has charged 19 people allegedly connected to a major drug-trafficking operation in Dallas, Texas.\nThe charges followed an investigation conducted under the Homeland Security Task Force, with several federal age... [1163 chars]",
+      "image": "https://dailypost.ng/wp-content/uploads/2026/09/US-charges-19-over-alleged-drug-trafficking-network-in-Dallas.jpg",
+      "url": "https://dailypost.ng/2026/09/30/us-charges-19-over-alleged-drug-trafficking-network-in-dallas/",
+      "publishedAt": "2026-09-30T11:16:55Z",
+      "source": "Daily Post Nigeria"
+    },
+    {
+      "category": "business",
+      "title": "Giant data centre plans lodged at old Chapelcross nuclear site",
+      "description": "Developers say it could create more than 500 full-time jobs on the Chapelcross site near Annan.",
+      "content": "Giant data centre plans lodged for old nuclear plant site\nPlans have been submitted for a £16.5bn data centre at the site of the former Chapelcross nuclear plant in the south of Scotland.\nIf approved, developers claim the scheme could deliver more th... [3200 chars]",
+      "image": "https://ichef.bbci.co.uk/news/1024/branded_news/32ce/live/7074b5d0-bcb7-11f1-babe-4199b0e7ccea.png",
+      "url": "https://www.bbc.com/news/articles/c3ew9vdknv1wo",
+      "publishedAt": "2026-09-30T11:16:40Z",
+      "source": "BBC"
+    },
+    {
+      "category": "business",
+      "title": "The dawn of the age of the exoskeleton",
+      "description": "Powered robotic devices designed to enhance the wearer’s physical capabilities are being developed for an increasing range of uses.",
+      "content": "This year, members of Seattle Mountain Rescue have been setting off into the wilds of the US Pacific north-west wearing an unusual piece of kit.\nThey’ve been hiking into the wilderness with powered assistive devices attached to their hips and legs. D... [6313 chars]",
+      "image": "https://images.theconversation.com/files/760293/original/file-20260916-70-kzjtre.jpg?ixlib=rb-4.1.1&rect=85%2C384%2C3035%2C1517&q=45&auto=format&w=1356&h=668&fit=crop",
+      "url": "https://theconversation.com/the-dawn-of-the-age-of-the-exoskeleton-281804",
+      "publishedAt": "2026-09-30T11:16:31Z",
+      "source": "The Conversation"
+    },
+    {
+      "category": "sports",
+      "title": "‘Done’ - Connor Goldson reveals moment Rangers knew Celtic had won the league",
+      "description": "Get Live Football Scores and Real-Time Football Results with LiveScore! We cover all Countries, Leagues and Competitions in unbeatable detail. Click Now!",
+      "content": "Brendan Rodgers’ side had emerged from a chaotic 3-3 draw at Ibrox before finding form at the crucial stage of the campaign.\nRangers suffered a damaging 3-2 defeat away to Ross County on April 14 before dropping another two points in a goalless draw ... [797 chars]",
+      "image": "https://cdn.celticshorts.com/wp-content/uploads/2026/09/celtic-v-rangers-ladbrokes-scottish-premiership-145-scaled.jpg",
+      "url": "https://www.livescore.com/en/news/football/scottish-premiership/done-connor-goldson-reveals-moment-rangers-knew-celtic-had-won-the-league-celtic-shorts/",
+      "publishedAt": "2026-09-30T11:16:02Z",
+      "source": "LiveScore"
+    },
+    {
+      "category": "sports",
+      "title": "Former Man City chairman calls on directors to stand down",
+      "description": "Manchester City's directors should step down after an independent commission found the Premier League club guilty of serious financial breaches, said former chairman David Bernstein, who described the situation as \"beyond awful\".",
+      "content": "Manchester City's directors should step down after an independent commission found the Premier League club guilty of serious financial breaches, said former chairman David Bernstein, who described the situation as \"beyond awful\".\nOn Tuesday, the Prem... [1755 chars]",
+      "image": "https://www.rte.ie/images/00085114-1600.jpg",
+      "url": "https://www.rte.ie/sport/soccer/2026/0930/1593489-former-man-city-chairman-calls-on-directors-to-stand-down/",
+      "publishedAt": "2026-09-30T11:15:31Z",
+      "source": "rte.ie"
+    },
+    {
+      "category": "entertainment",
+      "title": "Hayden Penettier's family has responded to Klitschko's intention to become the guardian of her estate",
+      "description": "Vladimir Klitschko has filed a petition with the court requesting that he be appointed temporary guardian of the estate of the late Hayden Panettiere. According to media reports, the actress’s family has responded to the boxer’s request; he is the father of her only daughter, Kaya.",
+      "content": "Vladimir Klitschko has petitioned the court to appoint him as the temporary guardian of the estate of the late Hayden Panettiere. According to media reports, the actress’s family has responded to the boxer’s initiative; he is the father of her only d... [960 chars]",
+      "image": "https://cdn-cabinet.ua.news/uploads/images/snimok_ekrana_2026_09_30_v_14_10_22.webp",
+      "url": "https://ua.news/en/znamenitosti/ridni-kheiden-penetier-vidreaguvali-na-namir-klichka-stati-opikunom-yiyi-spadku",
+      "publishedAt": "2026-09-30T11:15:29Z",
+      "source": "UA.NEWS"
+    },
+    {
+      "category": "entertainment",
+      "title": "Independence Day: Buy one, get one free on King Kosoko cinema tickets",
+      "description": "Teqsus Studios has announced a buy-one-get-one-free ticket offer for its historical epic, King Kosoko: The Battle For Lagos, at selected cinemas",
+      "content": "Teqsus Studios has announced a buy-one-get-one-free ticket offer for its historical epic, King Kosoko: The Battle For Lagos, at selected cinemas nationwide on Independence Day.\nThe studio said the offer would apply to all showings of the film on Thur... [1651 chars]",
+      "image": "https://dailypost.ng/wp-content/uploads/2026/09/King-Kosoko.jpg",
+      "url": "https://dailypost.ng/2026/09/30/independence-day-buy-one-get-one-free-on-king-kosoko-cinema-tickets/",
+      "publishedAt": "2026-09-30T11:15:26Z",
+      "source": "dailypost.ng"
+    },
+    {
+      "category": "entertainment",
+      "title": "\"Lesbian!\" Top Female Idol's Sexuality Sparks Huge Debate After Recent Messages",
+      "description": "A top female idol's sexuality has become a huge topic of debate after a recent message she sent to fans.",
+      "content": "Girls’ Generation Taeyeon‘s sexuality has become a huge topic of debate after a recent message she sent to fans.\nRecently, Taeyeon went viral for suggesting that fans find a woman to marry.\nPopular Female Idol Suggests Fans Find A Woman To Marry, Spa... [1016 chars]",
+      "image": "https://image.koreaboo.com/2026/09/FD2870-10-2.jpg",
+      "url": "https://www.koreaboo.com/news/top-female-idol-sexuality-debate-messages/",
+      "publishedAt": "2026-09-30T11:15:23Z",
+      "source": "koreaboo.com"
+    },
+    {
+      "category": "business",
+      "title": "6 Plug-in hybrid EVs that should debut in PH",
+      "description": "Top Gear Philippines lists six plug-in hybrid electric vehicles that should enter the Philippine market. Read the full list inside.",
+      "content": "Plug-in hybrid electric vehicles have undoubtedly been gaining momentum in the Philippines. In the first half of 2026, 5,531 examples were sold, whereas in 2025, only 160 units were shifted in the same time frame.\nOne of the leaders in this ongoing t... [3976 chars]",
+      "image": "http://images.topgear.com.ph/topgear/images/2026/09/30/rph-my26-0001-v001-desktop-1790756821.webp",
+      "url": "https://www.topgear.com.ph/features/feature-articles/six-phevs-we-want-in-ph-a6888-20260930",
+      "publishedAt": "2026-09-30T11:15:00Z",
+      "source": "Top Gear Philippines"
+    },
+    {
+      "category": "business",
+      "title": "Central Bank of Cyprus fines Banque SBA Cyprus €750,000",
+      "description": "The Central Bank of Cyprus fined Banque SBA Cyprus €750,000 over anti-money laundering and counter-terrorist financing compliance failures identified during a 2023 inspection.",
+      "content": "The Central Bank of Cyprus has imposed an administrative fine of €750,000 on Banque SBA Cyprus for non-compliance with anti-money laundering and counter-terrorist financing requirements, which the regulator identified during an inspection of the bank... [1576 chars]",
+      "image": "https://cdn-cabinet.ua.news/uploads/images/cyprus_central_bank_fines_banque_sba_cyp_1790766006172.webp",
+      "url": "https://ua.news/en/finansi/tsentrobank-kipru-oshtrafuvav-banque-sba-cyprus-na-eur750-tisiach-cyprus-mail",
+      "publishedAt": "2026-09-30T11:13:44Z",
+      "source": "UA.NEWS"
+    },
+    {
+      "category": "sports",
+      "title": "France midfielder Koné 'shocked' by coach Zidane's ability in training",
+      "description": "France midfielder Manu Koné had to pinch himself when new coach Zinedine Zidane laced up his boots to take part in training. Arguably the world’s best playmaker during his heyday, the 54-year-old Zidane was in his element spraying passes around and whipping in crosses to his awe-struck players. “Seeing it in person is even better, especially at his age,” the 25-year-old Koné added.",
+      "content": "PARIS (AP) — France midfielder Manu Koné had to pinch himself when new coach Zinedine Zidane laced up his boots to take part in training.\nArguably the world's best playmaker during his heyday, the 54-year-old Zidane was in his element spraying passes... [2164 chars]",
+      "image": "https://s.yimg.com/lo/mysterio/api/94980be32147164be103e0129f7f16232105cf66fb02c90abbc43e05d75587be/lightyear_networkapi/resizefill_w1200_h630%3Bquality_80%3Bformat_webp/https%3A%2F%2Fmedia.zenfs.com%2Fen%2Fap.org%2Fa4a393a482b5ef9c19ea925677d03d2a.jpg",
+      "url": "https://sports.yahoo.com/articles/france-midfielder-kon-shocked-coach-110939223.html",
+      "publishedAt": "2026-09-30T11:13:21Z",
+      "source": "Yahoo Sports"
+    },
+    {
+      "category": "world",
+      "title": "Trump’s ban on Canadian spirits takes effect",
+      "description": "The US ban on Canadian spirits will “ripple throughout the US hospitality sector”, the Toasts Not Tariffs coalition has warned.",
+      "content": "The US ban on Canadian spirits will “ripple throughout the US hospitality sector”, the Toasts Not Tariffs coalition has warned.\nThe ban on certain Canadian imports, including spirits, was announced by US president Donald Trump on Tuesday 8 September ... [2534 chars]",
+      "image": "https://www.thespiritsbusiness.com/content/uploads/2026/09/US-Canada.jpg",
+      "url": "https://www.thespiritsbusiness.com/2026/09/trumps-ban-on-canadian-spirits-takes-effect/",
+      "publishedAt": "2026-09-30T11:13:10Z",
+      "source": "The Spirits Business"
+    },
+    {
+      "category": "sports",
+      "title": "Alex Scott: Guernsey's pride as Bournemouth midfielder makes England debut",
+      "description": "Guernsey has \"a lot of pride\" after Bournemouth midfielder Alex Scott made his England debut.",
+      "content": "Guernsey has \"a lot of pride\" for Alex Scott after the Bournemouth midfielder made his England debut.\nThe 23-year-old came on as a second-half substitute in England's 2-0 win over the Czech Republic in the Nations League on Tuesday night.\nHe became j... [2174 chars]",
+      "image": "https://ichef.bbci.co.uk/ace/branded_sport/1200/cpsprodpb/b32c/live/91aab9e0-bcba-11f1-b3b2-8f83c947a78c.jpg",
+      "url": "https://www.bbc.co.uk/sport/football/articles/cmly4dqr9g6go",
+      "publishedAt": "2026-09-30T11:12:58Z",
+      "source": "BBC"
+    },
+    {
+      "category": "world",
+      "title": "The October 7 warnings threatening Netanyahu’s Israeli election campaign",
+      "description": "Netanyahu faces continued pressure over alleged warnings before the 2023 Hamas attack as October 27 elections draw near.",
+      "content": "The controversy over warnings Benjamin Netanyahu is alleged to have received in advance of the Hamas-led October 7, 2023 attacks continues to dog the Israeli prime minister ahead of knife-edge elections slated for October 27.\nThe latest blow to Netan... [5701 chars]",
+      "image": "https://www.aljazeera.com/wp-content/uploads/2026/09/GettyImages-2239251560-1788482890.jpg?resize=1920%2C1440",
+      "url": "https://www.aljazeera.com/news/2026/9/30/the-october-7-warnings-threatening-netanyahus-israel-election-campaign",
+      "publishedAt": "2026-09-30T11:12:27Z",
+      "source": "Al Jazeera"
+    },
+    {
+      "category": "world",
+      "title": "‘We no longer eat three meals’: Yemen’s displaced face daily fight for food",
+      "description": "Yemen’s latest fighting has redrawn front lines after more than a decade of war, deepening hunger and displacement.",
+      "content": "Mohamed Saed’s children still call him to the table. “Come on, Dad, come eat,” they say. Often, he tells them he is already full, even when he has gone without food.\nThe 46-year-old teacher has not received a salary in years. Displaced three or four ... [6064 chars]",
+      "image": "https://www.aljazeera.com/wp-content/uploads/2026/09/Yemen_control_Jan14-Sept27_1500x1000-2-1-1790775998.gif?resize=1200%2C630",
+      "url": "https://www.aljazeera.com/news/2026/9/30/we-no-longer-eat-three-meals-yemens-displaced-face-daily-fight-for-food",
+      "publishedAt": "2026-09-30T11:12:27Z",
+      "source": "Al Jazeera"
+    },
+    {
+      "category": "business",
+      "title": "Poundland management in rescue talks that could save 11,000 jobs",
+      "description": "Ex-Asda boss Andy Bond linked to plan, with buyout team understood to be negotiating with financial backer",
+      "content": "Poundland’s management team are in “advanced talks” to lead a rescue bid for the ailing cut-price retailer that could save up to 11,000 jobs.\nThe former Asda boss Andy Bond, who ran Poundland for a number of years from 2016 then stepped up to its for... [2464 chars]",
+      "image": "https://i.guim.co.uk/img/media/203150e4748b2c47702d0c2ef35b5ea6f0f2d38d/1085_171_4439_3549/master/4439.jpg?width=1200&height=630&quality=85&auto=format&fit=crop&precrop=40:21,offset-x50,offset-y0&overlay-align=bottom%2Cleft&overlay-width=100p&overlay-base64=L2ltZy9zdGF0aWMvb3ZlcmxheXMvdGctZGVmYXVsdC5wbmc&enable=upscale&s=5d53f032fd686c12a68db1b441aa917d",
+      "url": "https://www.theguardian.com/business/2026/sep/30/poundland-management-in-rescue-talks-that-could-save-11000-jobs",
+      "publishedAt": "2026-09-30T11:12:00Z",
+      "source": "The Guardian"
+    }
+  ]
 }
