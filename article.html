@@ -100,7 +100,7 @@
  const root=document.getElementById("story");
  try{
   const data=await fetch("data/news.json",{cache:"no-store"}).then(r=>r.json());
-  const item=data.stories?.[Number(auto)];
+  const item=data.stories?.find(s=>s.id===auto);
   if(!item){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>This automated edition story is no longer available.</p>";return;}
   const esc=v=>String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const title=item.title||"Saffron Globe News";
