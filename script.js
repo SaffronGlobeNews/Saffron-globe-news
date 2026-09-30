@@ -184,3 +184,29 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
 
   images.forEach(makeImageUI);
 })();
+
+
+/* Newspaper puzzle interactions */
+(function(){
+ const check=document.querySelector('.puzzle-check[data-puzzle="crossword"]');
+ const result=document.getElementById('crosswordResult');
+ check?.addEventListener('click',()=>{
+   const cells=[...document.querySelectorAll('.crossword input')];
+   const correct=cells.filter(x=>x.value.trim().toUpperCase()===x.dataset.answer).length;
+   result.textContent=correct===cells.length?'Perfect — crossword solved!':correct+' of '+cells.length+' letters correct.';
+ });
+ document.querySelector('.puzzle-reset')?.addEventListener('click',()=>{
+   document.querySelectorAll('.crossword input').forEach(x=>x.value='');
+   if(result) result.textContent='';
+ });
+ document.querySelector('.word-reveal')?.addEventListener('click',()=>{
+   document.querySelectorAll('.word-grid button').forEach((b,i)=>{if(i<5||i>=6&&i<12||i>=12&&i<17||i>=18&&i<22||i>=24&&i<28)b.classList.add('found')});
+   const r=document.getElementById('wordResult');if(r)r.textContent='Words revealed: WORLD, PEACE, TRADE, ASIA, NEWS.';
+ });
+ document.querySelectorAll('.word-grid button').forEach(btn=>btn.addEventListener('click',()=>btn.classList.toggle('found')));
+ document.querySelector('.sudoku-check')?.addEventListener('click',()=>{
+   const vals=[...document.querySelectorAll('.sudoku-grid input')].slice(0,6).map(x=>x.value.trim());
+   const r=document.getElementById('sudokuResult');
+   r.textContent=vals.length===6&&new Set(vals).size===6?'Row looks good.':'Fill the row with six different numbers.';
+ });
+})();
