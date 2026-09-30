@@ -47,9 +47,13 @@ siteSearch?.addEventListener("input",e=>renderSearch(e.target.value));
 document.getElementById("subscribe")?.addEventListener("submit",e=>{e.preventDefault();const email=e.target.querySelector("input").value;const button=e.target.querySelector("button");button.textContent="Subscribed ✓";button.disabled=true;e.target.querySelector("input").value="";});
 function updateSiteDates(){
  const now=new Date();
- const full=new Intl.DateTimeFormat("en-IN",{weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(now);
- const short=new Intl.DateTimeFormat("en-IN",{month:"long",day:"numeric"}).format(now);
- const time=new Intl.DateTimeFormat("en-IN",{hour:"2-digit",minute:"2-digit",hour12:false,timeZoneName:"short"}).format(now);
+ const opts={timeZone:"Asia/Kolkata"};
+ const full=new Intl.DateTimeFormat("en-IN",{...opts,weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(now);
+ const short=new Intl.DateTimeFormat("en-IN",{...opts,month:"long",day:"numeric"}).format(now);
+ const opts={timeZone:"Asia/Kolkata"};
+ const full=new Intl.DateTimeFormat("en-IN",{...opts,weekday:"long",month:"long",day:"numeric",year:"numeric"}).format(now);
+ const short=new Intl.DateTimeFormat("en-IN",{...opts,month:"long",day:"numeric"}).format(now);
+ const time=new Intl.DateTimeFormat("en-IN",{...opts,hour:"2-digit",minute:"2-digit",hour12:false,timeZoneName:"short"}).format(now);
  const dateLine=document.getElementById("dateLine");
  if(dateLine) dateLine.textContent=full;
  document.querySelectorAll(".site-date").forEach(el=>el.textContent=full);
@@ -59,9 +63,10 @@ function updateSiteDates(){
 updateSiteDates();
 function scheduleNextDateRefresh(){
  const now=new Date();
- const next=new Date(now);
+ const istNow=new Date(now.toLocaleString("en-US",{timeZone:"Asia/Kolkata"}));
+ const next=new Date(istNow);
  next.setHours(24,0,2,0);
- setTimeout(()=>{updateSiteDates();scheduleNextDateRefresh();},Math.max(1000,next-now));
+ setTimeout(()=>{updateSiteDates();scheduleNextDateRefresh();},Math.max(1000,next-istNow));
 }
 scheduleNextDateRefresh();
 
@@ -172,7 +177,7 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
     caption.textContent=img.alt||"Saffron Globe News";
     const credit=document.createElement("span");
     credit.className="image-credit";
-    credit.textContent="Saffron Globe";
+    credit.textContent=img.dataset.photoSource?"FILE / LICENSE":"SAFFRON GLOBE";
     meta.append(caption,credit);
     wrapper.appendChild(meta);
 
