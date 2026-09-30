@@ -1,17 +1,46 @@
 const menuBtn=document.getElementById("menuBtn"),nav=document.getElementById("nav"),searchBtn=document.getElementById("searchBtn");
-menuBtn?.addEventListener("click",()=>nav.classList.toggle("open"));
+menuBtn?.addEventListener("click",()=>{
+  nav?.classList.toggle("open");
+  menuBtn?.setAttribute("aria-expanded",nav?.classList.contains("open")?"true":"false");
+});
 const searchPanel=document.getElementById("searchPanel"),closeSearch=document.getElementById("closeSearch"),siteSearch=document.getElementById("siteSearch"),searchResults=document.getElementById("searchResults");
-function openSearch(){searchPanel?.classList.add("open");searchPanel?.setAttribute("aria-hidden","false");setTimeout(()=>siteSearch?.focus(),50);renderSearch("");}
-function closeSearchPanel(){searchPanel?.classList.remove("open");searchPanel?.setAttribute("aria-hidden","true");}
-searchBtn?.addEventListener("click",openSearch);closeSearch?.addEventListener("click",closeSearchPanel);
+function openSearch(){
+  if(!searchPanel)return;
+  searchPanel.classList.add("open");
+  searchPanel.setAttribute("aria-hidden","false");
+  document.body.style.overflow="hidden";
+  renderSearch("");
+  setTimeout(()=>siteSearch?.focus(),50);
+}
+function closeSearchPanel(){
+  searchPanel?.classList.remove("open");
+  searchPanel?.setAttribute("aria-hidden","true");
+  document.body.style.overflow="";
+}
+searchBtn?.addEventListener("click",openSearch);
+closeSearch?.addEventListener("click",closeSearchPanel);
 searchPanel?.addEventListener("click",e=>{if(e.target===searchPanel)closeSearchPanel();});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")closeSearchPanel();if(e.key==="/"&&!/input|textarea/i.test(document.activeElement?.tagName)){e.preventDefault();openSearch();}});
+document.addEventListener("keydown",e=>{
+  if(e.key==="Escape")closeSearchPanel();
+  if(e.key==="/"&&!/input|textarea|select/i.test(document.activeElement?.tagName)){e.preventDefault();openSearch();}
+});
+function escapeHTML(value){
+  return String(value).replace(/[&<>"']/g,ch=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[ch]));
+}
 function renderSearch(query){
- if(!searchResults)return;
- const q=query.trim().toLowerCase();
- const items=[...document.querySelectorAll("main article")].map((a,i)=>({i,title:a.querySelector("h3,h2")?.textContent.trim()||"",label:a.querySelector("label")?.textContent.trim()||"WORLD NEWS"})).filter(x=>x.title);
- const matches=q?items.filter(x=>(x.title+" "+x.label).toLowerCase().includes(q)):items.slice(0,8);
- searchResults.innerHTML=matches.length?matches.map(x=>'<a class="search-result" href="article.html?story='+x.i+'"><small>'+x.label+'</small><strong>'+x.title+'</strong></a>').join(""):'<div class="search-empty">No stories matched your search.</div>';
+  if(!searchResults)return;
+  const q=query.trim().toLowerCase();
+  const items=[...document.querySelectorAll("main article:not(.puzzle-card):not(.video-card):not(.video-feature)")].map(a=>{
+    const title=a.querySelector("h3,h2")?.textContent.trim()||"";
+    const label=a.querySelector("label")?.textContent.trim()||"WORLD NEWS";
+    const body=a.querySelector("p")?.textContent.trim()||"";
+    const story=a.dataset.story;
+    return {story,title,label,body};
+  }).filter(x=>x.title&&x.story!==undefined);
+  const matches=q?items.filter(x=>(x.title+" "+x.label+" "+x.body).toLowerCase().includes(q)):items.slice(0,8);
+  searchResults.innerHTML=matches.length
+    ? matches.map(x=>'<a class="search-result" href="article.html?story='+encodeURIComponent(x.story)+'"><small>'+escapeHTML(x.label)+'</small><strong>'+escapeHTML(x.title)+'</strong><span class="search-snippet">'+escapeHTML(x.body.slice(0,150))+(x.body.length>150?"…":"")+'</span></a>').join("")
+    : '<div class="search-empty">No stories matched your search. Try a broader topic, region or keyword.</div>';
 }
 siteSearch?.addEventListener("input",e=>renderSearch(e.target.value));
 
