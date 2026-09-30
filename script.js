@@ -284,12 +284,13 @@ window.addEventListener("newsFeedUpdated",()=>{
  const feed=window.SAFFRON_NEWS?.stories||[]; if(!feed.length)return;
  const esc=v=>escapeHTML(v||"");
  const label=v=>({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[v]||"GLOBAL NEWS");
- const put=(el,s,i)=>{
+ const put=(el,s)=>{
   if(!el)return;
   const image=s.image?'<div class="choice-image auto-news-image"><img src="'+esc(s.image)+'" alt="'+esc(s.title)+'" loading="lazy"></div>':'';
-  el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+i+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
+  const storyId=s.id||btoa(unescape(encodeURIComponent(s.url||s.title))).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,40);
+  el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
  };
- feed.filter(x=>x.category==="world").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#latest .cards article")[i],s,i));
- ["entertainment","sports"].forEach(cat=>feed.filter(x=>x.category===cat).slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#"+cat+" .choice-grid article")[i],s,i)));
- feed.filter(x=>x.category==="business").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#markets .market-cards article")[i],s,i));
+ feed.filter(x=>x.category==="world").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#latest .cards article")[i],s));
+ ["entertainment","sports"].forEach(cat=>feed.filter(x=>x.category===cat).slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#"+cat+" .choice-grid article")[i],s)));
+ feed.filter(x=>x.category==="business").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#markets .market-cards article")[i],s));
 });
