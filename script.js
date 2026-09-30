@@ -268,7 +268,7 @@ window.addEventListener("newsFeedUpdated",()=>{
  const label=v=>({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[v]||"GLOBAL NEWS");
  const put=(el,s)=>{
   if(!el)return;
-  const image=s.image?'<div class="choice-image auto-news-image"><img src="'+esc(s.image)+'" alt="'+esc(s.title)+'" loading="lazy"></div>':'';
+  const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||"news-placeholder.svg")+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\'news-placeholder.svg\';"></div>';
   const storyId=s.id||btoa(unescape(encodeURIComponent(s.url||s.title))).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,40);
   el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
  };
