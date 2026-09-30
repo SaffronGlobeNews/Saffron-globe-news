@@ -3,13 +3,6 @@
 <head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Saffron Globe News | Global Geopolitics</title>
 <meta name="description" content="Saffron Globe News — global geopolitics, diplomacy, security and world affairs.">
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-8YSYJTRE4B"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-8YSYJTRE4B');
-</script>
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css"><style>.site-brand{display:flex;align-items:center;gap:18px;text-decoration:none;color:inherit}.site-brand img{width:430px;height:auto;display:block}.brand-tagline{display:none}@media(max-width:700px){.site-brand img{width:330px}}</style><link rel="icon" type="image/svg+xml" href="favicon.svg"><link rel="shortcut icon" href="favicon.svg">
@@ -18,10 +11,10 @@
 </style>
 </head>
 <body>
-<div class="top">Thursday, October 1, 2026 <span>World · Geopolitics · Diplomacy · Security · Global Affairs</span></div>
+<div class="top"><span id="dateLine">Global Desk</span><span>World · Geopolitics · Diplomacy · Security · Global Affairs</span></div>
 <header><a href="index.html" class="brand site-brand"><img src="saffron-globe-logo.svg" alt="Saffron Globe News"><span class="brand-tagline">The world in focus. Global affairs in context.</span></a><button id="menuBtn">☰</button>
-<nav id="nav"><a href="#latest">Home</a><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#analysis">Analysis</a><a href="#videos">Video</a><button id="searchBtn">Search</button></nav></header>
-<div class="breaking"><b>GLOBAL DESK</b> International reporting · English only · Sources provided for every report.</div>
+<nav id="nav"><a href="#latest">Home</a><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#analysis">Analysis</a><a href="#videos">Video</a><button id="searchBtn" aria-label="Search stories">Search</button></nav></header>
+<div class="breaking"><b>GLOBAL DESK</b> International reporting · English-language global affairs desk.</div>
 <main>
 <section class="quick-topics"><div class="topic-nav"><span>EXPLORE</span><a href="#international">World</a><a href="#security">Security</a><a href="#diplomacy">Diplomacy</a><a href="#economy">Economy</a><a href="#analysis">Analysis</a></div></section>
 
@@ -102,4 +95,5 @@
 <article><label>UKRAINE · ENERGY · SECURITY</label><h3>Russia escalates strikes against Ukraine's energy infrastructure</h3><p>Reports from September 30 described a major Russian air campaign against Ukrainian energy facilities. The attacks come ahead of winter and add pressure to Ukraine's electricity and heating systems. The development remains closely tied to European security planning and the wider war's impact on critical infrastructure.</p><a class="source" href="https://moderndiplomacy.eu/2026/09/30/russia-escalates-strikes-on-ukraines-energy-grid-ahead-of-winter/" target="_blank" rel="noopener">Background report →</a></article>
 </div></section></main>
 <footer><strong>SAFFRON GLOBE NEWS</strong><p>The world in focus. Geopolitics in context.</p><p class="note">International English-language publication. Photographs are linked to their source/licensing pages; news reporting is attributed to the original outlet.</p><div class="copyright">© 2026 Saffron Globe News · Global editorial project.</div></footer>
-<script src="script.js"></script></body></html>
+<script src="script.js"></script><div id="searchPanel" class="search-panel" aria-hidden="true"><div class="search-box"><button id="closeSearch" aria-label="Close search">×</button><label>SEARCH THE GLOBE</label><h2>Find a story</h2><input id="siteSearch" type="search" placeholder="Search headlines, topics or regions…" autocomplete="off"><div id="searchResults" class="search-results"></div></div></div>
+</body></html>
