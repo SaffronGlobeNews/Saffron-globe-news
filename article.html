@@ -117,9 +117,24 @@
     let schema=document.getElementById("sgn-article-schema-json"); if(!schema){schema=document.createElement("script");schema.type="application/ld+json";schema.id="sgn-article-schema-json";document.head.appendChild(schema)}
     schema.textContent=JSON.stringify({"@context":"https://schema.org","@type":"NewsArticle","headline":title,"description":desc,"image":image?[new URL(image,location.href).href]:[],"datePublished":published,"dateModified":modified,"author":{"@type":"Organization","name":"Saffron Globe News"},"publisher":{"@type":"Organization","name":"Saffron Globe News","logo":{"@type":"ImageObject","url":new URL("favicon.svg",location.href).href}},"mainEntityOfPage":{"@type":"WebPage","@id":url}});
   }
+async function findAutoStory(auto){
+  if(!auto)return null;
+  try{
+    const current=await fetch("data/news.json",{cache:"no-store"}).then(r=>r.json());
+    const direct=current.stories?.find(s=>s.id===auto);
+    if(direct)return direct;
+  }catch{}
+  try{
+    const index=await fetch("data/news-archive-index.json",{cache:"no-store"}).then(r=>r.json());
+    const date=index.stories?.[auto];
+    if(!date)return null;
+    const day=await fetch("data/archive/"+encodeURIComponent(date)+".json",{cache:"no-store"}).then(r=>r.json());
+    return day.stories?.find(s=>s.id===auto)||null;
+  }catch{return null}
+}
   function fromFeed(){
     const auto=new URLSearchParams(location.search).get("auto"); if(!auto)return false;
-    fetch("data/news.json",{cache:"no-store"}).then(r=>r.json()).then(d=>{const item=d.stories?.find(s=>s.id===auto);update(item||null)}).catch(()=>update(null)); return true;
+    findAutoStory(auto).then(item=>update(item||null)).catch(()=>update(null)); return true;
   }
   if(!fromFeed()){
     const obs=new MutationObserver(()=>{if(root.querySelector("h1")){obs.disconnect();update(null)}}); obs.observe(root,{childList:true,subtree:true}); if(root.querySelector("h1"))update(null);
@@ -131,8 +146,7 @@
  const params=new URLSearchParams(location.search); const auto=params.get("auto"); if(auto===null)return;
  const root=document.getElementById("story");
  try{
-  const data=await fetch("data/news.json",{cache:"no-store"}).then(r=>r.json());
-  const item=data.stories?.find(s=>s.id===auto);
+  const item=await findAutoStory(auto);
   if(!item){root.innerHTML="<h1>Story not found</h1><p class='article-deck'>This automated edition story is no longer available.</p>";return;}
   const esc=v=>String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
   const title=item.title||"Saffron Globe News";
