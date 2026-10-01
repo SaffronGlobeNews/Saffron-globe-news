@@ -421,7 +421,7 @@ document.addEventListener("error",function(e){
     const h=feature.querySelector("h2");
     const p=feature.querySelector("p");
     const a=feature.querySelector(".source");
-    if(label)label.textContent=(top.category||"WORLD").toUpperCase()+" · LIVE EDITION";
+    if(label)label.textContent=(top.category||"WORLD").toUpperCase()+" · LATEST EDITION";
     if(h)h.textContent=top.title||h.textContent;
     if(p)p.textContent=top.description||top.content||p.textContent;
     if(a){
