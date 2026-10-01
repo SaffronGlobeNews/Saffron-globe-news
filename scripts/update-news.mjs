@@ -180,5 +180,5 @@ console.log(`Sitemap coverage: ${sitemapUrls.length} URLs; Google News entries: 
 
 const imageCount = stories.filter(s => s.image).length;
 console.log(`Saved ${stories.length} stories to data/news.json`);
-console.log(`Image coverage: ${imageCount}/${stories.length} stories have an image source (fallbacks included).`);
+console.log(`Image coverage: ${imageCount}/${stories.length} stories have an image source (fallbacks included).`);\n\n// Preserve the refreshed stories in the long-term daily archive.\nawait import("./archive-news.mjs");
 if (imageCount !== stories.length) throw new Error("Image coverage check failed: every published story must have an image.");
