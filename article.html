@@ -160,6 +160,12 @@ async function findAutoStory(auto){
   document.title=title+" | Saffron Globe News";
   const articleParagraphs=paragraphs.map(p=>'<p>'+esc(p)+'</p>').join("");
   root.innerHTML='<div class="article-kicker">'+esc(item.category||"GLOBAL NEWS")+'</div><h1>'+esc(title)+'</h1><div class="article-deck">'+esc(deck)+'</div><div class="article-meta"><span class="article-byline">By SGN Global Desk</span> · Saffron Globe News · Automated news desk · <time datetime="'+esc(item.publishedAt||"")+'">'+esc(item.publishedAt?new Date(item.publishedAt).toLocaleString("en-IN",{dateStyle:"medium",timeStyle:"short"}):"Latest edition")+'</time> · '+esc(item.source||"Original publisher")+'</div>'+'<img class="article-hero" src="'+esc(item.image||fallback)+'" alt="'+esc(title)+'" onerror="this.onerror=null;this.src=\'news-placeholder.svg\';">'+'<div class="photo-credit">Image supplied by the original news feed. Check the source report for rights and attribution.</div><div class="article-body"><p class="standfirst">'+esc(deck)+'</p><h2>What the report says</h2>'+articleParagraphs+'<h2>Source and context</h2><p>This page presents the available source description and content without adding unverified details. Readers should use the original report for the full story, updates, quotations and additional context.</p><a class="article-source" href="'+esc(item.url)+'" target="_blank" rel="noopener noreferrer">Read original report · '+esc(item.source||"Source")+' →</a></div>';
+root.insertAdjacentHTML("beforeend",'<section class="related relatedArchive"><h2>More from Saffron Globe News</h2><div class="related-grid" id="relatedArchiveGrid"><div class="search-empty">Loading related coverage…</div></div></section>');
+  fetch("data/news.json",{cache:"no-store"}).then(r=>r.json()).then(feed=>{
+    const pool=(feed.stories||[]).filter(x=>x.id!==item.id && (x.category===item.category || !item.category)).slice(0,3);
+    const grid=document.getElementById("relatedArchiveGrid"); if(!grid)return;
+    grid.innerHTML=pool.map(x=>'<div class="related-card"><a href="article.html?auto='+encodeURIComponent(x.id)+'">'+esc(x.title)+'</a><span class="archive-date">'+esc(x.source||"Saffron Globe News")+'</span></div>').join("") || '<div class="search-empty">More related coverage will appear as the archive grows.</div>';
+  }).catch(()=>{});
  }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>The automated edition could not be loaded right now.</p>";}
 })();
 </script>
