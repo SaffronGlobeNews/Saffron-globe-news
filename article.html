@@ -40,7 +40,7 @@
 <div id="story">Loading story…</div>
 </div>
 </main>
-<footer><strong>SAFFRON GLOBE NEWS</strong><p>The world in focus. Geopolitics in context.</p><p class="note">International English-language publication. Reporting is independently written by Saffron Globe News; source attribution is provided for transparency.</p><div class="copyright">© 2026 Saffron Globe News · Global editorial project.</div></footer>
+<footer><strong>SAFFRON GLOBE NEWS</strong><p>The world in focus. Geopolitics in context.</p><p class="note">International English-language publication. Pages may contain original editorial presentation or automated source-fed reports; source attribution is provided for transparency.</p><div class="copyright">© 2026 Saffron Globe News · Global editorial project.</div></footer>
 <script src="script.js"></script>
 <script>
 (async function(){
@@ -79,7 +79,7 @@
       '<div class="article-kicker">'+label+'</div>'+
       '<h1>'+title+'</h1>'+
       '<div class="article-deck">'+lead+'</div>'+
-      '<div class="article-meta">Saffron Globe News · International Desk · Updated October 1, 2026 <span class="read-time" id="readTime">5 min read</span></div>'+
+      '<div class="article-meta">Saffron Globe News · International Desk · <span class="article-date" id="articleDate">Latest edition</span> <span class="read-time" id="readTime">5 min read</span></div>'+
       '<img class="article-hero" src="'+image+'" alt="'+alt+'">'+
       '<div class="photo-credit">News photograph / file image. Image rights and original attribution should be checked at the linked source.</div>'+
       '<div class="article-body">'+
@@ -95,7 +95,6 @@
   }catch(e){root.innerHTML="<h1>Unable to load story</h1><p class='article-deck'>Please return to the homepage and try again.</p>";}
 })();
 </script>
-</body>
 <script id="sgn-article-schema">
 (function(){
   const root=document.getElementById("story"); if(!root)return;
@@ -127,7 +126,6 @@
   }
 })();
 </script>
-</html>
 <script>
 (async function(){
  const params=new URLSearchParams(location.search); const auto=params.get("auto"); if(auto===null)return;
@@ -177,3 +175,8 @@
  .article-page{padding:0!important}.article-hero{height:90mm!important}
 }
 </style>
+
+<script>
+(function(){const el=document.getElementById("articleDate");if(el)el.textContent=new Date().toLocaleDateString("en-IN",{year:"numeric",month:"long",day:"numeric"});})();
+</script>
+</body></html>
