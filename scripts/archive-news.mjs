@@ -98,6 +98,24 @@ for (const story of unique) {
   }
 }
 
+const rssItems = unique.slice(0, 50).map(story => {
+  const pub = new Date(story.publishedAt || Date.now()).toUTCString();
+  const link = siteBase + "article.html?auto=" + encodeURIComponent(story.id);
+  return "    <item><title><![CDATA[" + String(story.title).replace(/]]>/g, "") + "]]></title><link>" + xmlEscape(link) + "</link><guid isPermaLink=\"true\">" + xmlEscape(link) + "</guid><pubDate>" + xmlEscape(pub) + "</pubDate><description><![CDATA[" + String(story.description || story.content || "").replace(/]]>/g, "") + "]]></description><source url=\"" + xmlEscape(story.url || "") + "\">" + xmlEscape(story.source || "Saffron Globe News") + "</source></item>";
+}).join("\n");
+await fs.writeFile("rss.xml", [
+  '<?xml version="1.0" encoding="UTF-8"?>',
+  '<rss version="2.0"><channel>',
+  '<title>Saffron Globe News</title>',
+  '<link>' + siteBase + '</link>',
+  '<description>Source-led global news, geopolitics, diplomacy, security, markets, sports and culture.</description>',
+  '<language>en</language>',
+  '<lastBuildDate>' + new Date().toUTCString() + '</lastBuildDate>',
+  rssItems,
+  '</channel></rss>',
+  ''
+].join("\n"), "utf8");
+
 await fs.writeFile("sitemap.xml", [
   '<?xml version="1.0" encoding="UTF-8"?>',
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">',
