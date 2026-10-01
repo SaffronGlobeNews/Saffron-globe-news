@@ -42,7 +42,27 @@ function renderSearch(query){
     ? matches.map(x=>'<a class="search-result" href="'+escapeHTML(x.href)+'"><small>'+escapeHTML(x.label)+'</small><strong>'+escapeHTML(x.title)+'</strong><span class="search-snippet">'+escapeHTML(x.body.slice(0,150))+(x.body.length>150?"…":"")+'</span></a>').join("")
     : '<div class="search-empty">No stories matched your search. Try a broader topic, region or keyword.</div>';
 }
-siteSearch?.addEventListener("input",e=>renderSearch(e.target.value));
+let archiveSearchCache = null;
+async function loadArchiveSearch(){
+  if(archiveSearchCache)return archiveSearchCache;
+  try{
+    const index=await fetch("data/news-archive-index.json",{cache:"no-store"}).then(r=>r.json());
+    const dates=(index.dates||[]).slice(0,14);
+    const days=await Promise.all(dates.map(d=>fetch("data/archive/"+encodeURIComponent(d)+".json",{cache:"no-store"}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}))));
+    archiveSearchCache=days.flatMap(d=>d.stories||[]);
+  }catch{archiveSearchCache=[]}
+  return archiveSearchCache;
+}
+async function renderArchiveSearch(query){
+  const q=query.trim().toLowerCase(); if(!q)return;
+  const archived=await loadArchiveSearch();
+  if(!archived.length||!searchResults)return;
+  const matches=archived.filter(x=>(x.title+" "+(x.description||"")+" "+(x.category||"")).toLowerCase().includes(q)).slice(0,30);
+  if(!matches.length)return;
+  const html=matches.map(x=>'<a class="search-result" href="article.html?auto='+encodeURIComponent(x.id)+'"><small>'+escapeHTML(x.category||"ARCHIVE")+'</small><strong>'+escapeHTML(x.title||"")+'</strong><span class="search-snippet">'+escapeHTML((x.description||x.content||"").slice(0,150))+'…</span></a>').join("");
+  searchResults.innerHTML=html;
+}
+siteSearch?.addEventListener("input",e=>{renderSearch(e.target.value);renderArchiveSearch(e.target.value)});
 
 document.getElementById("subscribe")?.addEventListener("submit",e=>{e.preventDefault();const email=e.target.querySelector("input").value;const button=e.target.querySelector("button");button.textContent="Subscribed ✓";button.disabled=true;e.target.querySelector("input").value="";});
 function updateSiteDates(){
