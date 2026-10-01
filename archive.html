@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>News Archive | Saffron Globe News</title>
+<meta name="description" content="Browse the saved Saffron Globe News archive by date.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://parshantsharma29102005-hue.github.io/Saffron-globe-news/archive.html">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
+</head>
+<body>
+<div class="top"><span>SGN NEWS ARCHIVE</span><span>Saved editions · World · Business · Entertainment · Sports</span></div>
+<header><a href="index.html" class="brand site-brand"><img src="saffron-globe-logo.svg" alt="Saffron Globe News"></a><nav><a href="index.html">Home</a><a href="archive.html">Archive</a></nav></header>
+<div class="editor-utility"><div class="utility-inner"><span><b>SAFFRON GLOBE NEWS</b></span><span class="utility-spacer"></span><span>News Archive</span></div></div>
+<main>
+<section id="archivePage" class="archive-feed">
+  <div class="head"><div><span class="eyebrow">SAVED EDITIONS</span><h1>News Archive</h1></div><span id="archivePageStatus">Loading archive…</span></div>
+  <p class="archive-intro">Browse previous editions. Each story remains available through its original source link and its Saffron Globe News article page.</p>
+  <div id="archivePageGrid" class="archive-grid"></div>
+  <div id="archivePageMore" class="archive-sentinel"></div>
+</section>
+</main>
+<footer><div class="footer-inner"><strong>Saffron Globe News</strong><span>Source-led global coverage.</span><a href="index.html">Home</a><a href="editorial.html">Editorial</a><a href="privacy.html">Privacy</a></div></footer>
+<script>
+(function(){
+  const grid=document.getElementById("archivePageGrid"),status=document.getElementById("archivePageStatus"),more=document.getElementById("archivePageMore");
+  const esc=v=>String(v||"").replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]));
+  const fallback=c=>({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[c]||"news-world.svg");
+  function card(s){
+    const id=encodeURIComponent(s.id||"");
+    const img=esc(s.image||fallback(s.category));
+    const label=esc(({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[s.category]||"GLOBAL NEWS"));
+    const date=s.publishedAt?new Date(s.publishedAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
+    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+img+'" alt="'+esc(s.title)+'" loading="lazy" onerror="this.onerror=null;this.src=\''+fallback(s.category)+'\';"></a><div class="archive-copy"><label>'+label+'</label><h3><a href="article.html?auto='+id+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source||"Source")+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
+  }
+  async function run(){
+    try{
+      const index=await fetch("data/news-archive-index.json",{cache:"no-store"}).then(r=>r.json());
+      const dates=index.dates||[];
+      let page=Number(new URLSearchParams(location.search).get("page")||"1");
+      page=Math.max(1,Math.min(page,dates.length||1));
+      const date=dates[page-1];
+      if(!date){status.textContent="No archived editions yet.";return}
+      const day=await fetch("data/archive/"+encodeURIComponent(date)+".json",{cache:"no-store"}).then(r=>r.json());
+      const stories=day.stories||[];
+      grid.innerHTML=stories.map(card).join("");
+      status.textContent=date+" · "+stories.length+" stories";
+      const links=[];
+      if(page>1)links.push('<a class="btn" href="archive.html?page='+(page-1)+'">← Newer edition</a>');
+      if(page<dates.length)links.push('<a class="btn" href="archive.html?page='+(page+1)+'">Older edition →</a>');
+      more.innerHTML=links.join(" ");
+    }catch{status.textContent="Archive is temporarily unavailable."}
+  }
+  run();
+})();
+</script>
+</body>
+</html>
