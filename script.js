@@ -174,6 +174,13 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
     wrapper.appendChild(img);
 
     const article=img.closest("article");
+    const headline=article?.querySelector("h3,h2")?.textContent?.trim();
+    if(headline){
+      const overlay=document.createElement("span");
+      overlay.className="image-headline";
+      overlay.textContent=headline;
+      wrapper.appendChild(overlay);
+    }
     const label=article ? article.querySelector("label") : null;
     const badge=document.createElement("span");
     badge.className="image-badge";
@@ -289,7 +296,7 @@ window.addEventListener("newsFeedUpdated",()=>{
  const put=(el,s)=>{
   if(!el)return;
   const fallback=({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[s.category]||"news-world.svg");
-  const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||fallback)+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"></div>';
+  const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||fallback)+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"><span class="image-headline">'+esc(s.title)+'</span></div>';
   const storyId=s.id||btoa(unescape(encodeURIComponent(s.url||s.title))).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,40);
   el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
  };
