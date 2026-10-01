@@ -166,6 +166,8 @@ const sitemap = [
   '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">',
   `  <url><loc>${xmlEscape(siteBase)}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
   `  <url><loc>${xmlEscape(siteBase + "article.html")}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
+  `  <url><loc>${xmlEscape(siteBase + "editorial.html")}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
+  `  <url><loc>${xmlEscape(siteBase + "privacy.html")}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
   ...newsStories.map(story => {
     const published = new Date(story.publishedAt || new Date().toISOString()).toISOString();
     return `  <url><loc>${xmlEscape(siteBase + "article.html?auto=" + encodeURIComponent(story.id))}</loc><lastmod>${xmlEscape(published)}</lastmod><news:news><news:publication><news:name>Saffron Globe News</news:name><news:language>en</news:language></news:publication><news:publication_date>${xmlEscape(published)}</news:publication_date><news:title>${xmlEscape(story.title)}</news:title></news:news></url>`;
