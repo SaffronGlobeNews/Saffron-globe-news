@@ -141,15 +141,25 @@ const sitemapUrls = [
     lastmod: story.publishedAt || new Date().toISOString()
   }))
 ];
+const newsCutoff = Date.now() - 48 * 60 * 60 * 1000;
+const newsStories = stories.filter(story => {
+  const published = Date.parse(story.publishedAt || "");
+  return Number.isFinite(published) && published >= newsCutoff;
+});
 const sitemap = [
   '<?xml version="1.0" encoding="UTF-8"?>',
-  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">',
-  ...sitemapUrls.map(item => `  <url><loc>${xmlEscape(item.loc)}</loc><lastmod>${xmlEscape(new Date(item.lastmod).toISOString())}</lastmod></url>`),
+  '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:news="http://www.google.com/schemas/sitemap-news/0.9">',
+  `  <url><loc>${xmlEscape(siteBase)}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
+  `  <url><loc>${xmlEscape(siteBase + "article.html")}</loc><lastmod>${xmlEscape(new Date().toISOString())}</lastmod></url>`,
+  ...newsStories.map(story => {
+    const published = new Date(story.publishedAt || new Date().toISOString()).toISOString();
+    return `  <url><loc>${xmlEscape(siteBase + "article.html?auto=" + encodeURIComponent(story.id))}</loc><lastmod>${xmlEscape(published)}</lastmod><news:news><news:publication><news:name>Saffron Globe News</news:name><news:language>en</news:language></news:publication><news:publication_date>${xmlEscape(published)}</news:publication_date><news:title>${xmlEscape(story.title)}</news:title></news:news></url>`;
+  }),
   '</urlset>',
   ''
 ].join("\n");
 await fs.writeFile("sitemap.xml", sitemap, "utf8");
-console.log(`Sitemap coverage: ${sitemapUrls.length} URLs`);
+console.log(`Sitemap coverage: ${sitemapUrls.length} URLs; Google News entries: ${newsStories.length}`);
 
 const imageCount = stories.filter(s => s.image).length;
 console.log(`Saved ${stories.length} stories to data/news.json`);
