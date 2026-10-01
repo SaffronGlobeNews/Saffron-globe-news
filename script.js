@@ -510,5 +510,5 @@ document.addEventListener("error",function(e){
   },{rootMargin:"800px 0px"});
   if(sentinel)observer.observe(sentinel);
   window.addEventListener("newsFeedUpdated",start,{once:true});
-  start();
+  if(window.SAFFRON_NEWS)start();
 })();
