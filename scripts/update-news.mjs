@@ -88,17 +88,17 @@ for (const category of categories) {
 // Editorial quality guard: keep the automatic homepage focused on useful news
 // and remove obvious graphic/clickbait phrasing without trying to judge legitimate reporting.
 const blockedPhrases = [
-  /\\bgraphic(?: images?| footage)?\\b/i,
-  /\\bgruesome (?:images?|footage|details)\\b/i,
-  /\\bdead body\\b/i,
-  /\\bgore\\b/i,
-  /\\bnsfw\\b/i,
-  /\\bexplicit (?:images?|video|footage)\\b/i,
-  /\\bshocking (?:video|footage|images?)\\b/i,
-  /\\bdisturbing (?:video|footage|images?)\\b/i,
-  /\\byou won't believe\\b/i,
-  /\\bclick here\\b/i,
-  /\\bwatch (?:the )?shocking\\b/i
+  /\bgraphic(?: images?| footage)?\\b/i,
+  /\bgruesome (?:images?|footage|details)\\b/i,
+  /\bdead body\\b/i,
+  /\bgore\\b/i,
+  /\bnsfw\\b/i,
+  /\bexplicit (?:images?|video|footage)\\b/i,
+  /\bshocking (?:video|footage|images?)\\b/i,
+  /\bdisturbing (?:video|footage|images?)\\b/i,
+  /\byou won't believe\\b/i,
+  /\bclick here\\b/i,
+  /\bwatch (?:the )?shocking\\b/i
 ];
 
 function passesEditorialFilter(item) {
