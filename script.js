@@ -417,3 +417,98 @@ document.addEventListener("error",function(e){
   updateLead();
 })();
 
+
+
+/* Infinite news archive: old stories stay below the latest edition. */
+(function(){
+  if(!document.getElementById("archiveGrid"))return;
+  let started=false, loading=false, dates=[], dateIndex=0, buffer=[];
+  const loadedIds=new Set();
+
+  const esc=v=>escapeHTML(v||"");
+  const fallbackFor=(category)=>{
+    return ({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[category]||"news-world.svg");
+  };
+  const status=document.getElementById("archiveStatus");
+  const grid=document.getElementById("archiveGrid");
+  const sentinel=document.getElementById("archiveSentinel");
+
+  function card(story){
+    const fallback=fallbackFor(story.category);
+    const image=esc(story.image||fallback);
+    const id=encodeURIComponent(story.id||"");
+    const date=story.publishedAt?new Date(story.publishedAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
+    const source=esc(story.source||"Original source");
+    const category=esc(({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[story.category]||"GLOBAL NEWS"));
+    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+image+'" alt="'+esc(story.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"></a><div class="archive-copy"><label>'+category+'</label><h3><a href="article.html?auto='+id+'">'+esc(story.title)+'</a></h3><p>'+esc(story.description||story.content)+'</p><a class="source" href="'+esc(story.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+source+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
+  }
+
+  async function fetchDay(date){
+    try{
+      const r=await fetch("data/archive/"+encodeURIComponent(date)+".json",{cache:"no-store"});
+      if(!r.ok)return [];
+      const data=await r.json();
+      return Array.isArray(data.stories)?data.stories:[];
+    }catch{return []}
+  }
+
+  async function fillBuffer(){
+    while(buffer.length<12 && dateIndex<dates.length){
+      const day=await fetchDay(dates[dateIndex++]);
+      for(const story of day){
+        if(!story?.id || loadedIds.has(story.id))continue;
+        buffer.push(story);
+      }
+    }
+  }
+
+  async function loadMore(){
+    if(loading)return;
+    loading=true;
+    if(sentinel)sentinel.style.display="flex";
+    await fillBuffer();
+    const batch=buffer.splice(0,12);
+    if(batch.length){
+      const fragment=document.createDocumentFragment();
+      const holder=document.createElement("div");
+      holder.innerHTML=batch.map(card).join("");
+      while(holder.firstElementChild)fragment.appendChild(holder.firstElementChild);
+      grid.appendChild(fragment);
+      batch.forEach(story=>loadedIds.add(story.id));
+      if(status)status.textContent=grid.children.length+" archived stories loaded";
+    }
+    const finished=!buffer.length&&dateIndex>=dates.length;
+    if(sentinel){
+      if(finished){
+        sentinel.innerHTML='<div class="archive-end">You have reached the end of the saved archive. New stories will appear here automatically after the next newsroom refresh.</div>';
+      }else{
+        sentinel.innerHTML='<span class="archive-spinner"></span><span>Loading more stories…</span>';
+      }
+    }
+    loading=false;
+  }
+
+  async function start(){
+    if(started)return;
+    started=true;
+    const feed=window.SAFFRON_NEWS?.stories||[];
+    feed.forEach(story=>story?.id&&loadedIds.add(story.id));
+    try{
+      const r=await fetch("data/news-archive-index.json",{cache:"no-store"});
+      if(!r.ok)throw new Error("archive index unavailable");
+      const index=await r.json();
+      dates=Array.isArray(index.dates)?index.dates:[];
+      await loadMore();
+    }catch{
+      if(status)status.textContent="Archive is temporarily unavailable";
+      if(sentinel)sentinel.textContent="Older stories could not be loaded right now.";
+    }
+  }
+
+  const observer=new IntersectionObserver(entries=>{
+    if(entries.some(entry=>entry.isIntersecting))loadMore();
+  },{rootMargin:"800px 0px"});
+  if(sentinel)observer.observe(sentinel);
+  window.addEventListener("newsFeedUpdated",start,{once:true});
+  start();
+})();
