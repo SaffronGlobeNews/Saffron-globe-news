@@ -1345,3 +1345,20 @@ main>section:not(.hero){padding-top:34px;padding-bottom:34px}
   .editorial-fallback-image{aspect-ratio:16/9}
 }
 
+
+/* Honest newsletter state until a delivery provider is connected. */
+.newsletter-note{
+  position:relative;
+  z-index:1;
+  display:flex;
+  flex-direction:column;
+  gap:6px;
+  min-width:min(100%,420px);
+  padding:16px 18px;
+  border:1px solid rgba(255,255,255,.2);
+  background:rgba(255,255,255,.06);
+  color:#fff;
+}
+.newsletter-note strong{font-size:13px}
+.newsletter-note span{font-size:11px;line-height:1.5;opacity:.82}
+@media(max-width:700px){.newsletter-note{min-width:0;width:100%;box-sizing:border-box}}
