@@ -40,7 +40,7 @@
     const img=esc(s.image||fallback(s.category));
     const label=esc(({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[s.category]||"GLOBAL NEWS"));
     const date=s.publishedAt?new Date(s.publishedAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
-    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+img+'" alt="'+esc(s.title)+'" loading="lazy" onerror="this.onerror=null;this.src=\''+fallback(s.category)+'\';"></a><div class="archive-copy"><label>'+label+'</label><h3><a href="article.html?auto='+id+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source||"Source")+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
+    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+img+'" alt="'+esc(s.title)+'" loading="lazy" onerror="this.onerror=null;this.src=\''+fallback(s.category)+'\';"><span class="image-headline">'+esc(s.title)+'</span></a><div class="archive-copy"><label>'+label+'</label><h3><a href="article.html?auto='+id+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source||"Source")+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
   }
   async function run(){
     try{
