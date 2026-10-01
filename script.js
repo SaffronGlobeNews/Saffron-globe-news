@@ -258,27 +258,6 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
  document.getElementById("printPaper")?.addEventListener("click",()=>window.print());
 })();
 
-/* Static story links: make homepage headlines open the readable article view. */
-(function(){
-  function linkStaticStories(){
-    const articles=[...document.querySelectorAll("main article")].filter(a=>!a.closest("#todayspaper")&&!a.closest("#puzzles")&&!a.classList.contains("video-card")&&!a.classList.contains("video-feature"));
-    articles.forEach((article,index)=>{
-      const heading=article.querySelector("h3,h2");
-      if(!heading || heading.querySelector("a")) return;
-      const source=article.querySelector(".source");
-      if(!source) return;
-      const a=document.createElement("a");
-      a.href="article.html?story="+index;
-      a.textContent=heading.textContent;
-      a.setAttribute("aria-label","Read: "+heading.textContent.trim());
-      heading.textContent="";
-      heading.appendChild(a);
-    });
-  }
-  if(document.readyState==="loading")document.addEventListener("DOMContentLoaded",linkStaticStories);
-  else linkStaticStories();
-})();
-
 /* Live feed hook */
 (async()=>{try{const r=await fetch("data/news.json",{cache:"no-store"});if(!r.ok)return;const f=await r.json();window.SAFFRON_NEWS=f;window.dispatchEvent(new Event("newsFeedUpdated"));}catch(e){console.warn("News feed unavailable",e);}})();
 
