@@ -117,7 +117,7 @@ const stories = all
     return true;
   })
   .sort((a, b) => new Date(b.publishedAt || 0) - new Date(a.publishedAt || 0))
-  .slice(0, 30)
+  .slice(0, 40)
   .map(item => ({
     id: crypto.createHash("sha256").update(item.url).digest("hex").slice(0, 16),
     ...item
