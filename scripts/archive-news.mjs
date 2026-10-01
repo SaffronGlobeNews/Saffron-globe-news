@@ -52,7 +52,7 @@ for (const [dateKey, stories] of groups) {
 }
 
 const archiveFiles = (await fs.readdir(archiveDir))
-  .filter(name => /^\\d{4}-\\d{2}-\\d{2}\\.json$/.test(name))
+  .filter(name => /^\d{4}-\d{2}-\d{2}\.json$/.test(name))
   .sort((a, b) => b.localeCompare(a));
 
 const index = { updatedAt: new Date().toISOString(), dates: [], stories: {} };
