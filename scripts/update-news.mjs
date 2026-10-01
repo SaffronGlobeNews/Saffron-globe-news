@@ -7,6 +7,21 @@ if (!apiKey) throw new Error("Missing GNEWS_API_KEY GitHub secret.");
 const categories = ["world", "business", "entertainment", "sports"];
 const base = "https://gnews.io/api/v4/top-headlines";
 const all = [];
+function cleanText(value) {
+  return String(value || "")
+    .replace(/\s*\[\d+\s+chars?\]\s*$/i, "")
+    .replace(/\s+/g, " ")
+    .trim();
+}
+function buildLongDescription(description, content) {
+  const primary = cleanText(description);
+  const secondary = cleanText(content);
+  if (!secondary || secondary === primary) return primary;
+  const sentences = secondary.split(/(?<=[.!?])\s+/).filter(Boolean);
+  const additions = sentences.filter(sentence => !primary.includes(sentence)).slice(0, 3).join(" ");
+  const combined = [primary, additions].filter(Boolean).join(" ");
+  return combined.slice(0, 650).trim();
+}
 function fallbackImage(category) {
   return ({
     world: "news-world.svg",
@@ -57,8 +72,8 @@ for (const category of categories) {
     all.push({
       category,
       title: item.title ?? "",
-      description: item.description ?? "",
-      content: item.content ?? "",
+      description: buildLongDescription(item.description, item.content),
+      content: cleanText(item.content ?? item.description ?? ""),
       image: item.image || fallbackImage(category),
       url: item.url ?? "",
       publishedAt: item.publishedAt ?? null,
