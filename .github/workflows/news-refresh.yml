@@ -1,6 +1,10 @@
 name: Saffron Globe News - hourly refresh
 
 on:
+  push:
+    paths:
+      - "scripts/update-news.mjs"
+      - ".github/workflows/news-refresh.yml"
   schedule:
     - cron: "7 * * * *"
   workflow_dispatch:
