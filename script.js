@@ -303,8 +303,44 @@ window.addEventListener("newsFeedUpdated",()=>{
  feed.filter(x=>x.category==="world").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#latest .cards article")[i],s));
  ["entertainment","sports"].forEach(cat=>feed.filter(x=>x.category===cat).slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#"+cat+" .choice-grid article")[i],s)));
  feed.filter(x=>x.category==="business").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#markets .market-cards article")[i],s));
+ renderCurrentDeskCards(feed);
 });
 
+
+/* Keep every editorial desk synchronized with the live feed.
+ * Static cards are replaced with current, source-linked stories when data/news.json loads.
+ */ 
+function renderCurrentDeskCards(feed){
+  const safe=(v)=>escapeHTML(v||"");
+  const fallbackFor=(category)=>({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[category]||"news-world.svg");
+  const makeImage=(story)=>{
+    const fallback=fallbackFor(story.category);
+    return '<div class="choice-image auto-news-image"><img src="'+safe(story.image||fallback)+'" alt="'+safe(story.title||"News photograph")+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"><span class="image-headline">'+safe(story.title||"")+'</span></div>';
+  };
+  const makeLink=(story)=>'article.html?auto='+encodeURIComponent(story.id||"");
+  const fill=(article,story,index)=>{
+    if(!article||!story)return;
+    const label=({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[story.category]||"GLOBAL NEWS");
+    const num=article.querySelector("b")?.textContent||String(index+1).padStart(2,"0");
+    article.innerHTML=(article.querySelector("b")?'<b>'+safe(num)+'</b>':'')+
+      '<div class="desk-story">'+makeImage(story)+'<label>'+safe(label)+'</label><h3><a href="'+makeLink(story)+'">'+safe(story.title)+'</a></h3><p>'+safe(story.description||story.content)+'</p><a class="source" href="'+safe(story.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+safe(story.source||"Source")+' →</a></div>';
+  };
+  const world=feed.filter(x=>x.category==="world");
+  const business=feed.filter(x=>x.category==="business");
+  const security=[...world].slice(0,2);
+  document.querySelectorAll("#security .list article").forEach((a,i)=>fill(a,security[i],i));
+  document.querySelectorAll("#diplomacy .business article").forEach((a,i)=>fill(a,world[i+2]||world[i],i));
+  document.querySelectorAll("#economy .business article").forEach((a,i)=>fill(a,business[i],i));
+  const heroStory=world[0];
+  const hero=document.querySelector(".editorial-hero .feature");
+  if(hero&&heroStory){
+    const img=hero.querySelector("img"); if(img){img.src=heroStory.image||fallbackFor("world");img.alt=heroStory.title||"World news";}
+    const label=hero.querySelector("label"); if(label)label.textContent="LATEST WORLD NEWS";
+    const h=hero.querySelector("h2"); if(h){h.innerHTML='<a href="'+makeLink(heroStory)+'">'+safe(heroStory.title)+'</a>';}
+    const p=hero.querySelector("p"); if(p)p.textContent=heroStory.description||heroStory.content||"";
+    const source=hero.querySelector(".source"); if(source){source.href=heroStory.url||"#";source.textContent="Original report · "+(heroStory.source||"Source")+" →";}
+  }
+}
 
 /* Modern newsroom interactions */
 (function(){
