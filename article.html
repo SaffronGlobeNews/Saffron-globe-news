@@ -159,21 +159,38 @@
   }
 window.findAutoStory = async function(auto){
   if(!auto)return null;
+  const cleanId=String(auto).trim();
+  // First check the live feed. This is the normal path for the latest edition.
   try{
-    const current=await fetch("data/news.json",{cache:"no-store"}).then(r=>r.json());
-    const direct=current.stories?.find(s=>s.id===auto);
+    const current=await fetch("data/news.json?ts="+Date.now(),{cache:"no-store"}).then(r=>{
+      if(!r.ok) throw new Error("news feed "+r.status);
+      return r.json();
+    });
+    const direct=(current.stories||[]).find(s=>String(s.id)===cleanId);
     if(direct)return direct;
-  }catch{}
+  }catch(err){ console.warn("Live news feed unavailable:",err); }
+
+  // Then use the archive index to jump directly to the correct daily file.
   try{
-    const index=await fetch("data/news-archive-index.json",{cache:"no-store"}).then(r=>r.json());
-    const dates=Array.isArray(index.dates)?index.dates:[];
-    for(const date of dates){
-      const day=await fetch("data/archive/"+encodeURIComponent(date)+".json",{cache:"no-store"}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}));
-      const found=(day.stories||[]).find(s=>s.id===auto);
+    const index=await fetch("data/news-archive-index.json?ts="+Date.now(),{cache:"no-store"}).then(r=>{
+      if(!r.ok) throw new Error("archive index "+r.status);
+      return r.json();
+    });
+    const indexedDate=index?.stories?.[cleanId];
+    if(indexedDate){
+      const day=await fetch("data/archive/"+encodeURIComponent(indexedDate)+".json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():null);
+      const found=(day?.stories||[]).find(s=>String(s.id)===cleanId);
       if(found)return found;
     }
-    return null;
-  }catch{return null}
+
+    // Compatibility fallback for older archive indexes that only expose dates.
+    for(const date of (Array.isArray(index?.dates)?index.dates:[])){
+      const day=await fetch("data/archive/"+encodeURIComponent(date)+".json?ts="+Date.now(),{cache:"no-store"}).then(r=>r.ok?r.json():{stories:[]}).catch(()=>({stories:[]}));
+      const found=(day.stories||[]).find(s=>String(s.id)===cleanId);
+      if(found)return found;
+    }
+  }catch(err){ console.warn("News archive unavailable:",err); }
+  return null;
 }
   function fromFeed(){
     const auto=new URLSearchParams(location.search).get("auto"); if(!auto)return false;
