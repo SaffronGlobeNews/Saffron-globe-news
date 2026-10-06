@@ -285,7 +285,7 @@ if(location.pathname.endsWith("index.html")||location.pathname.endsWith("/")){
  document.getElementById("printPaper")?.addEventListener("click",()=>window.print());
 })();
 
-/* Live feed hook */
+/* Live SGN editorial feed: data/news.json is a manually reviewed SGN feed; no third-party feed API is fetched here. */
 (async()=>{try{const r=await fetch("data/news.json",{cache:"no-store"});if(!r.ok)return;const f=await r.json();window.SAFFRON_NEWS=f;window.dispatchEvent(new Event("newsFeedUpdated"));}catch(e){console.warn("News feed unavailable",e);}})();
 
 /* Render live feed into the main desks */
@@ -298,7 +298,7 @@ window.addEventListener("newsFeedUpdated",()=>{
   const fallback=({world:"news-world.svg",business:"news-business.svg",entertainment:"news-entertainment.svg",sports:"news-sports.svg"}[s.category]||"news-world.svg");
   const image='<div class="choice-image auto-news-image"><img src="'+esc(s.image||fallback)+'" alt="'+esc(s.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"><span class="image-headline">'+esc(s.title)+'</span></div>';
   const storyId=s.id||btoa(unescape(encodeURIComponent(s.url||s.title))).replace(/[^a-zA-Z0-9_-]/g,"").slice(0,40);
-  el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+esc(s.source)+' →</a>';
+  el.innerHTML=image+'<label>'+esc(label(s.category))+'</label><h3><a href="article.html?auto='+encodeURIComponent(storyId)+'">'+esc(s.title)+'</a></h3><p>'+esc(s.description||s.content)+'</p><a class="source" href="'+esc(s.url)+'" target="_blank" rel="noopener noreferrer">Source / verification · '+esc(s.source)+' →</a>';
  };
  feed.filter(x=>x.category==="world").slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#latest .cards article")[i],s));
  ["entertainment","sports"].forEach(cat=>feed.filter(x=>x.category===cat).slice(0,3).forEach((s,i)=>put(document.querySelectorAll("#"+cat+" .choice-grid article")[i],s)));
@@ -323,7 +323,7 @@ function renderCurrentDeskCards(feed){
     const label=({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[story.category]||"GLOBAL NEWS");
     const num=article.querySelector("b")?.textContent||String(index+1).padStart(2,"0");
     article.innerHTML=(article.querySelector("b")?'<b>'+safe(num)+'</b>':'')+
-      '<div class="desk-story">'+makeImage(story)+'<label>'+safe(label)+'</label><h3><a href="'+makeLink(story)+'">'+safe(story.title)+'</a></h3><p>'+safe(story.description||story.content)+'</p><a class="source" href="'+safe(story.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+safe(story.source||"Source")+' →</a></div>';
+      '<div class="desk-story">'+makeImage(story)+'<label>'+safe(label)+'</label><h3><a href="'+makeLink(story)+'">'+safe(story.title)+'</a></h3><p>'+safe(story.description||story.content)+'</p><a class="source" href="'+safe(story.url)+'" target="_blank" rel="noopener noreferrer">Source / verification · '+safe(story.source||"Source")+' →</a></div>';
   };
   const world=feed.filter(x=>x.category==="world");
   const business=feed.filter(x=>x.category==="business");
@@ -338,7 +338,7 @@ function renderCurrentDeskCards(feed){
     const label=hero.querySelector("label"); if(label)label.textContent="LATEST WORLD NEWS";
     const h=hero.querySelector("h2"); if(h){h.innerHTML='<a href="'+makeLink(heroStory)+'">'+safe(heroStory.title)+'</a>';}
     const p=hero.querySelector("p"); if(p)p.textContent=heroStory.description||heroStory.content||"";
-    const source=hero.querySelector(".source"); if(source){source.href=heroStory.url||"#";source.textContent="Original report · "+(heroStory.source||"Source")+" →";}
+    const source=hero.querySelector(".source"); if(source){source.href=heroStory.url||"#";source.textContent="Source / verification · "+(heroStory.source||"Source")+" →";}
   }
 }
 
@@ -482,7 +482,19 @@ document.addEventListener("error",function(e){
 
 
 
-/* Infinite news archive: old stories stay below the latest edition. */
+/* Archived third-party feed disabled pending editorial review.
+ * Old syndicated/scraped archive stories are intentionally not rendered.
+ * A reviewed SGN archive can be added later without importing publisher copy.
+ */
+(function(){
+  const grid=document.getElementById("archiveGrid");
+  const status=document.getElementById("archiveStatus");
+  const sentinel=document.getElementById("archiveSentinel");
+  if(grid)grid.innerHTML="";
+  if(status)status.textContent="Archive paused while older stories are reviewed.";
+  if(sentinel)sentinel.innerHTML='<div class="archive-end">Older syndicated stories are temporarily hidden while Saffron Globe News reviews them for originality and image rights.</div>';
+  return;
+}
 (function(){
   if(!document.getElementById("archiveGrid"))return;
   let started=false, loading=false, dates=[], dateIndex=0, buffer=[];
@@ -503,7 +515,7 @@ document.addEventListener("error",function(e){
     const date=story.publishedAt?new Date(story.publishedAt).toLocaleDateString("en-IN",{day:"numeric",month:"short",year:"numeric"}):"";
     const source=esc(story.source||"Original source");
     const category=esc(({world:"WORLD NEWS",business:"BUSINESS & MARKETS",entertainment:"ENTERTAINMENT",sports:"SPORTS"}[story.category]||"GLOBAL NEWS"));
-    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+image+'" alt="'+esc(story.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"></a><div class="archive-copy"><label>'+category+'</label><h3><a href="article.html?auto='+id+'">'+esc(story.title)+'</a></h3><p>'+esc(story.description||story.content)+'</p><a class="source" href="'+esc(story.url)+'" target="_blank" rel="noopener noreferrer">Original report · '+source+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
+    return '<article class="archive-card"><a class="archive-image" href="article.html?auto='+id+'"><img src="'+image+'" alt="'+esc(story.title)+'" loading="lazy" decoding="async" onerror="this.onerror=null;this.src=\''+fallback+'\';"></a><div class="archive-copy"><label>'+category+'</label><h3><a href="article.html?auto='+id+'">'+esc(story.title)+'</a></h3><p>'+esc(story.description||story.content)+'</p><a class="source" href="'+esc(story.url)+'" target="_blank" rel="noopener noreferrer">Source / verification · '+source+' →</a><span class="archive-date">'+esc(date)+'</span></div></article>';
   }
 
   async function fetchDay(date){
