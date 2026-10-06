@@ -1,95 +1,95 @@
 {
   "updatedAt": "2026-10-06T12:00:00+05:30",
   "source": "SGN Editorial Desk",
-  "editorialNote": "Original SGN briefs are written and edited for Saffron Globe News. External links are provided for source verification; third-party article text and photographs are not republished in this feed.",
+  "editorialNote": "Saffron Globe News original editorial briefs. Facts are independently written and source-linked for verification. Images are original SGN editorial illustrations.",
   "stories": [
     {
       "id": "sgn-20261006-ai-chips",
       "category": "business",
       "title": "AI chip demand is pushing manufacturers to expand capacity",
       "description": "AI infrastructure is becoming a major planning priority for chipmakers. AMD says it expects to substantially increase chip supply in 2027, while its leadership is discussing additional wafer, memory and manufacturing capacity with Asian partners. For readers, the bigger story is the supply-chain race behind the AI boom: computing demand is now influencing investment decisions across several semiconductor markets.",
-      "content": "SGN Editorial Desk analysis: the next phase of the AI race is increasingly about physical capacity as well as software. Companies are planning ahead for processors, advanced wafers and memory because demand can outpace the ability of manufacturers to deliver them.",
-      "image": "news-business.svg",
+      "image": "images/editorial/ai-chips.svg",
       "url": "https://www.reuters.com/world/asia-pacific/amd-plans-substantially-increase-supply-2027-ceo-says-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-africa-growth",
       "category": "world",
       "title": "Africa's growth outlook improves, but investment remains the key test",
       "description": "The World Bank has raised its 2026 growth forecast for Africa to 4.3%. The upgrade points to stronger performance across much of the region, while the bank is also urging governments to invest in artificial intelligence and digital capabilities. The important question is whether faster growth can translate into productivity, jobs and broader access to technology.",
-      "content": "SGN Editorial Desk analysis: a higher regional growth forecast is encouraging, but headline growth alone does not settle questions about employment, infrastructure and digital access. Technology investment will be one of the factors to watch as governments shape their development strategies.",
-      "image": "news-world.svg",
+      "image": "images/editorial/africa-growth.svg",
       "url": "https://www.reuters.com/world/africa/world-bank-raises-africas-2026-growth-forecast-urges-ai-investments-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-india-markets",
       "category": "business",
       "title": "Indian shares advance as markets look toward the RBI decision",
       "description": "Indian equities extended their rebound on Tuesday, with banks and Trent among the stocks supporting the move. Investors are also watching the Reserve Bank of India's next policy decision and broader global signals. The session shows how domestic monetary policy and international market conditions are increasingly being weighed together by Indian investors.",
-      "content": "SGN Editorial Desk analysis: the immediate focus for Indian markets is the balance between domestic policy expectations, global bond yields and foreign capital flows. Traders are watching both the RBI's decision and the wider risk environment.",
-      "image": "news-business.svg",
+      "image": "images/editorial/india-markets.svg",
       "url": "https://www.reuters.com/world/india/indian-shares-poised-extend-rebound-ahead-rbi-policy-verdict-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-gold",
       "category": "business",
       "title": "Gold holds firm as traders reassess the path for US interest rates",
       "description": "Gold edged higher on Tuesday as traders reduced expectations of a Federal Reserve rate increase in October, even while the dollar and Treasury yields remained firm. The movement highlights the competing forces affecting the metal: expectations for monetary policy on one side and higher yields and a stronger currency on the other.",
-      "content": "SGN Editorial Desk analysis: gold is responding to a tug-of-war between rate expectations and the broader strength of the US dollar. Investors are likely to keep watching inflation, employment and central-bank signals for the next major direction.",
-      "image": "news-business.svg",
+      "image": "images/editorial/gold-rates.svg",
       "url": "https://www.reuters.com/world/india/gold-inches-lower-firmer-dollar-higher-yields-weigh-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-olympics",
       "category": "sports",
       "title": "India remains among the countries seeking the 2036 Olympics",
       "description": "India is one of seven countries still in contention to host the 2036 Summer Olympics, according to the International Olympic Committee. Germany, Qatar, Hungary, South Korea and South Africa are also listed among the candidates. The IOC expects a shortlist in 2027, with a preferred host to be named in 2028 and the final decision expected in 2029.",
-      "content": "SGN Sports Desk: India's bid remains a long-term sporting and infrastructure story rather than an immediate event decision. The coming stages will involve evaluation of the competing proposals before the IOC moves toward a final selection.",
-      "image": "news-sports.svg",
+      "image": "images/editorial/olympics-india.svg",
       "url": "https://www.reuters.com/sports/india-among-seven-countries-vying-2036-olympics-ioc-says-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-ganguly",
       "category": "sports",
       "title": "Sourav Ganguly appointed Delhi Capitals head coach for 2027 IPL",
       "description": "Former India captain Sourav Ganguly has been appointed head coach of Delhi Capitals for the 2027 Indian Premier League season. It marks another step in his coaching career after his work with Pretoria Capitals in South Africa's SA20 competition.",
-      "content": "SGN Sports Desk: Ganguly brings extensive international playing experience and recent franchise coaching experience to the role. The appointment will put attention on how Delhi Capitals build their squad and coaching structure ahead of the next IPL season.",
-      "image": "news-sports.svg",
+      "image": "images/editorial/ganguly-cricket.svg",
       "url": "https://www.reuters.com/sports/cricket/ganguly-named-delhi-capitals-coach-2027-ipl-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-sinner",
       "category": "sports",
       "title": "Jannik Sinner ends his 2026 season to continue knee recovery",
       "description": "World number one Jannik Sinner will not compete again in 2026 as he continues recovering from a knee injury. The decision removes the top-ranked player from the remainder of the season and shifts attention to the closing tournaments and the wider race for the year-end rankings.",
-      "content": "SGN Sports Desk: Sinner's decision prioritizes recovery over a late-season return. The absence also changes the competitive landscape for the remaining events, where other leading players will have an opportunity to collect ranking points and titles.",
-      "image": "news-sports.svg",
+      "image": "images/editorial/sinner-tennis.svg",
       "url": "https://www.reuters.com/sports/tennis/sinner-miss-rest-2026-recover-knee-injury-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     },
     {
       "id": "sgn-20261006-meta",
       "category": "world",
       "title": "UK regulator opens first Online Safety Act investigation into Meta",
       "description": "Britain's communications regulator Ofcom has opened its first formal investigation into Meta under the Online Safety Act. The case examines whether Meta properly assessed risks associated with Instagram Instants before its launch. Meta says it carried out a risk analysis, while the regulator is examining whether its duties were met.",
-      "content": "SGN Editorial Desk analysis: the investigation is significant because it tests how Britain's online-safety framework is applied to a major social platform. The outcome could provide a clearer signal about the level of risk assessment regulators expect from technology companies.",
-      "image": "news-world.svg",
+      "image": "images/editorial/online-safety.svg",
       "url": "https://www.reuters.com/business/uk-probes-meta-over-safety-risks-of-instagram-instants-feature-2026-10-06/",
       "publishedAt": "2026-10-06T12:00:00+05:30",
-      "source": "Reuters"
+      "source": "Reuters",
+      "sourceLabel": "Research source"
     }
   ]
 }
